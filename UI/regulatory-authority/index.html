@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Central oversight of hospital-owned medical warehouses">
+  <title>Regulatory Authority | Madad</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="madad-is-loading">
+  <div class="madad-splash" id="madad-splash" role="status" aria-label="Opening Madad">
+    <div class="madad-splash-inner">
+      <img class="madad-splash-logo" src="../assets/image.png" alt="Madad for Medical Logistics">
+      <div class="madad-splash-progress" aria-hidden="true"></div>
+    </div>
+  </div>
+  <script src="../assets/splash.js"></script>
+
+  <div id="madad-interfaces">
+    <div class="madad-product-window">
+      <section class="madad-screen" id="madad-authority">
+        <aside class="madad-sidebar" aria-label="Regulatory Authority navigation">
+          <div class="madad-brand">
+            <div class="madad-brand-mark">
+              <img class="madad-brand-logo" src="../assets/madad-logo.png" alt="">
+            </div>
+            <div><div class="madad-brand-name">MADAD</div><div class="madad-brand-sub">Medical Logistics</div></div>
+          </div>
+          <div class="madad-side-role">Regulatory Authority</div>
+          <nav class="madad-side-nav">
+            <button class="madad-side-item is-active" type="button" data-authority-view="overview"><i data-lucide="layout-dashboard" aria-hidden="true"></i> Overview</button>
+            <button class="madad-side-item" type="button" data-authority-view="hospitals"><i data-lucide="hospital" aria-hidden="true"></i> Hospitals</button>
+            <button class="madad-side-item" type="button" data-authority-view="warehouses"><i data-lucide="warehouse" aria-hidden="true"></i> Hospital Warehouses</button>
+            <button class="madad-side-item" type="button" data-authority-view="shortages"><i data-lucide="triangle-alert" aria-hidden="true"></i> Cross-Hospital Shortages</button>
+            <button class="madad-side-item" type="button" data-authority-view="surplus"><i data-lucide="package-plus" aria-hidden="true"></i> Surplus &amp; Expiry</button>
+            <button class="madad-side-item" type="button" data-authority-view="forecasts"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i> Demand Forecasts</button>
+          </nav>
+          <div class="madad-side-foot">Read-only access across connected hospital warehouses</div>
+        </aside>
+
+        <main class="madad-main">
+          <header class="madad-topbar">
+            <div class="madad-title"><h1 id="madad-authority-title">Hospital Warehouse Oversight</h1></div>
+            <div class="madad-top-actions"><span class="madad-demo-label" id="madad-authority-data-badge">Authority Portal</span><div class="madad-avatar" aria-label="Authority user">RA</div></div>
+          </header>
+
+          <div class="madad-sr-only" id="madad-authority-feedback" aria-live="polite"></div>
+
+          <div class="madad-metrics" id="madad-authority-metrics">
+            <div class="madad-metric"><div class="madad-metric-head"><span>Connected hospital warehouses</span><i data-lucide="warehouse" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-authority-hospitals">—</div><div class="madad-metric-note" id="madad-authority-hospitals-note">Loading…</div></div>
+            <div class="madad-metric"><div class="madad-metric-head"><span>Medical supplies tracked</span><i data-lucide="boxes" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-authority-products">—</div><div class="madad-metric-note">Supplies monitored across hospital warehouses</div></div>
+            <div class="madad-metric"><div class="madad-metric-head"><span>Inventory records</span><i data-lucide="database" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-authority-rows">—</div><div class="madad-metric-note">Warehouse activity available for monitoring</div></div>
+            <div class="madad-metric"><div class="madad-metric-head"><span>Monitoring period</span><i data-lucide="calendar-range" aria-hidden="true"></i></div><div class="madad-metric-value madad-metric-value-small" id="madad-authority-period">—</div><div class="madad-metric-note">Available inventory history</div></div>
+          </div>
+
+          <div class="madad-grid-2">
+            <section class="madad-section">
+              <div class="madad-section-head"><div><div class="madad-section-title" id="madad-authority-section-title">Hospital warehouse inventory signals</div><div class="madad-section-caption" id="madad-authority-section-caption">Latest inventory records across connected hospitals</div></div><button class="madad-link-button" id="madad-authority-view-all" type="button">View warehouses</button></div>
+              <div class="madad-toolbar">
+                <label class="madad-sr-only" for="madad-authority-search">Search the current table</label>
+                <input class="madad-input" id="madad-authority-search" type="search" placeholder="Search hospital, district or supply">
+                <label class="madad-sr-only" for="madad-authority-district">Filter by district</label>
+                <select class="madad-select" id="madad-authority-district"><option value="">All districts</option></select>
+              </div>
+              <div class="madad-table-wrap">
+                <table class="madad-table">
+                  <thead id="madad-authority-table-head"></thead>
+                  <tbody id="madad-authority-table-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="madad-section">
+              <div class="madad-section-head"><div><div class="madad-section-title" id="madad-authority-context-title">Monitoring scope</div><div class="madad-section-caption" id="madad-authority-context-caption">Information available to the regulatory authority</div></div></div>
+              <div class="madad-risk-list" id="madad-authority-context"></div>
+            </section>
+          </div>
+        </main>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="../data/interface-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
