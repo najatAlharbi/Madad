@@ -120,40 +120,57 @@ These files provide reusable summaries of the dataset, image-level information, 
 
 ---
 
-# Data Exploration and Preprocessing
+## Data Preprocessing & Training Strategy
 
 Notebook:
 
 `02_MADAD_NLM20_Data_Exploration_and_Preprocessing.ipynb`
 
-The second stage prepares the NLM20 dataset for deep learning experiments.
+Before model training, the NLM20 dataset was explored and prepared to create a consistent pipeline for all deep learning experiments.
 
-The preprocessing workflow includes:
+The preprocessing and training strategy included:
 
 - Organizing image paths and corresponding NDC labels.
 - Exploring NDC-level metadata.
-- Reviewing class distributions.
+- Reviewing the class distribution across the 20 NDC classes.
 - Preparing the training, validation, and test datasets.
-- Converting the image dataset into a consistent structure for model training.
+- Resizing images and applying model-specific preprocessing.
 - Preparing class labels for multiclass classification.
-- Applying image preprocessing required by the selected CNN architectures.
 - Creating model-ready input pipelines.
+- Applying **class weights** to address class imbalance and give greater importance to underrepresented NDC classes.
+- Applying **regular image augmentation** to the training data to increase image diversity and improve generalization.
+- Using transfer learning with pretrained MobileNet architectures.
+- Evaluating both frozen-backbone and partial fine-tuning strategies.
 
-This preprocessing stage ensures that all experiments use a consistent representation of the NLM20 images and labels.
+### Handling Class Imbalance
 
----
+The NLM20 classes were not equally represented. To reduce model bias toward classes with larger numbers of images, **class weights** were incorporated during training.
 
-# Deep Learning Experiments
+This increases the contribution of underrepresented classes to the training loss without changing the original dataset distribution.
 
-Transfer learning was used to investigate lightweight convolutional neural network architectures for medication image classification.
+### Data Augmentation
 
-Three experiments were conducted:
+Image augmentation was applied **only to the training set** to introduce controlled variations of the original images and improve model generalization.
 
-| Experiment | Model | Training Strategy |
+The validation and test sets were kept unchanged to provide a consistent and unbiased evaluation of model performance.
+
+This preprocessing strategy ensures that all experiments use a consistent representation of the NLM20 images and labels while addressing class imbalance and reducing the risk of overfitting.
+
+## Experimental Workflow
+
+The complete experimental workflow was:
+
+**Dataset Inspection → Image EDA → Data Preprocessing → Class Imbalance Handling → Data Augmentation → Transfer Learning → Validation → Fine-Tuning → Test Evaluation**
+
+Three main deep learning experiments were conducted:
+
+| Experiment | Architecture | Training Strategy |
 |---|---|---|
-| 1 | MobileNetV1 | Frozen pretrained backbone |
-| 2 | MobileNetV2 | Frozen pretrained backbone |
-| 3 | MobileNetV1 | Last 20 layers trainable |
+| **Model 1** | MobileNetV1 | Frozen pretrained backbone |
+| **Model 2** | MobileNetV2 | Frozen pretrained backbone |
+| **Model 3** | MobileNetV1 | Partial fine-tuning of the last 20 layers |
+
+The frozen-backbone experiments were first used as transfer-learning baselines. MobileNetV1 was then further explored using partial fine-tuning, where the final 20 layers were made trainable to allow higher-level visual features to adapt more specifically to the NLM20 medication images.
 
 ---
 
