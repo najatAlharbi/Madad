@@ -396,10 +396,3 @@ The two components address complementary tasks:
 
 **Visual Medication Verification → Image Classification, NDC Identification, and Medication Verification**
 
----
-
-## License
-
-This repository is licensed under the **MIT License**.
-
-The NLM20 dataset and other external datasets remain subject to their original licenses and terms of use.
