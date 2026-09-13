@@ -1,0 +1,21 @@
+ndc,drug_name,shape,color,imprint,size_mm,expected_train,expected_valid,expected_test,expected_total,observed_test,observed_train,observed_valid,diff_train,diff_valid,diff_test,observed_total,diff_total
+00378-0208,Furosemide 20 mg oral tablet,Round,White,M2,6,602,199,200,1001,200,602,199,0,0,0,1001,0
+00378-3855,Escitalopram 5 mg oral tablet,Round,White,M;EC5,6,129,42,42,213,42,129,42,0,0,0,213,0
+00591-0461,Glipizide 10 mg oral tablet,Round,White,Watson;461,10,148,48,48,244,48,148,48,0,0,0,244,0
+16729-0020,Pioglitazone 15 mg oral tablet,Round,White,P;15,5,258,84,85,427,85,258,84,0,0,0,427,0
+16729-0168,Escitalopram 5 mg oral tablet,Round,White,5,5,129,42,42,213,42,129,42,0,0,0,213,0
+50111-0434,Trazodone hydrochloride 100 mg oral tablet,Round,White,PLIVA;434,11,601,199,200,1000,200,601,199,0,0,0,1000,0
+53489-0156,Allopurinol 100 mg oral tablet,Round,White,MP;71,10,600,200,200,1000,200,600,200,0,0,0,1000,0
+53746-0544,Primidone 50 mg oral tablet,Round,White,AN;44,6,97,31,32,160,32,97,31,0,0,0,160,0
+57664-0377,Tramadol hydrochloride 50 mg oral tablet,Capsule,White,377,13,601,199,200,1000,200,601,199,0,0,0,1000,0
+62037-0831,Metoprolol succinate 50 mg extended-release tablet,Round,White,831,9,600,200,200,1000,200,600,200,0,0,0,1000,0
+62037-0832,Metoprolol succinate 100 mg extended-release tablet,Round,White,832,10,601,200,200,1001,200,601,200,0,0,0,1001,0
+64380-0803,Ranitidine 150 mg oral tablet (Strides Pharma),Round,Brown,S;429,10,548,181,182,911,182,548,181,0,0,0,911,0
+65162-0253,Ranitidine 150 mg oral tablet (Amneal Pharmaceuticals),Round,Orange,IP;253,9,557,184,185,926,185,557,184,0,0,0,926,0
+67253-0901,Alprazolam 0.5 mg oral tablet,Oval,Yellow,S901,9,497,164,165,826,165,497,164,0,0,0,826,0
+68382-0008,Lamotrigine 100 mg oral tablet,Round,White,ZC;80,10,423,139,140,702,140,423,139,0,0,0,702,0
+68382-0227,Amiodarone hydrochloride 200 mg oral tablet,Round,White,ZE;65,10,120,39,39,198,39,120,39,0,0,0,198,0
+69097-0127,Amlodipine 5 mg oral tablet,Round,White,127;C,8,600,200,200,1000,200,600,200,0,0,0,1000,0
+69097-0128,Amlodipine 10 mg oral tablet,Round,White,128;C,8,600,200,200,1000,200,600,200,0,0,0,1000,0
+69315-0904,Lorazepam 0.5 mg oral tablet,Round,White,EP;904,5,357,118,118,593,118,357,118,0,0,0,593,0
+69315-0905,Lorazepam 1 mg oral tablet,Round,White,EP;905;1,7,325,107,108,540,108,325,107,0,0,0,540,0

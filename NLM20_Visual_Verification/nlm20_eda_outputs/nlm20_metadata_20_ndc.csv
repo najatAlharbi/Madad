@@ -1,0 +1,21 @@
+ndc,drug_name,shape,color,imprint,size_mm,expected_train,expected_valid,expected_test,expected_total
+00378-0208,Furosemide 20 mg oral tablet,Round,White,M2,6,602,199,200,1001
+00378-3855,Escitalopram 5 mg oral tablet,Round,White,M;EC5,6,129,42,42,213
+00591-0461,Glipizide 10 mg oral tablet,Round,White,Watson;461,10,148,48,48,244
+16729-0020,Pioglitazone 15 mg oral tablet,Round,White,P;15,5,258,84,85,427
+16729-0168,Escitalopram 5 mg oral tablet,Round,White,5,5,129,42,42,213
+50111-0434,Trazodone hydrochloride 100 mg oral tablet,Round,White,PLIVA;434,11,601,199,200,1000
+53489-0156,Allopurinol 100 mg oral tablet,Round,White,MP;71,10,600,200,200,1000
+53746-0544,Primidone 50 mg oral tablet,Round,White,AN;44,6,97,31,32,160
+57664-0377,Tramadol hydrochloride 50 mg oral tablet,Capsule,White,377,13,601,199,200,1000
+62037-0831,Metoprolol succinate 50 mg extended-release tablet,Round,White,831,9,600,200,200,1000
+62037-0832,Metoprolol succinate 100 mg extended-release tablet,Round,White,832,10,601,200,200,1001
+64380-0803,Ranitidine 150 mg oral tablet (Strides Pharma),Round,Brown,S;429,10,548,181,182,911
+65162-0253,Ranitidine 150 mg oral tablet (Amneal Pharmaceuticals),Round,Orange,IP;253,9,557,184,185,926
+67253-0901,Alprazolam 0.5 mg oral tablet,Oval,Yellow,S901,9,497,164,165,826
+68382-0008,Lamotrigine 100 mg oral tablet,Round,White,ZC;80,10,423,139,140,702
+68382-0227,Amiodarone hydrochloride 200 mg oral tablet,Round,White,ZE;65,10,120,39,39,198
+69097-0127,Amlodipine 5 mg oral tablet,Round,White,127;C,8,600,200,200,1000
+69097-0128,Amlodipine 10 mg oral tablet,Round,White,128;C,8,600,200,200,1000
+69315-0904,Lorazepam 0.5 mg oral tablet,Round,White,EP;904,5,357,118,118,593
+69315-0905,Lorazepam 1 mg oral tablet,Round,White,EP;905;1,7,325,107,108,540
