@@ -11,6 +11,287 @@ The project currently consists of two complementary components:
 
 # 1. Medical Inventory Forecasting & Redistribution
 
+## Overview
+
+The primary objective of MADAD was achieved through an end-to-end decision-support pipeline integrating next-month demand forecasting, uncertainty-aware deficit and potential-surplus detection, and LP-based inventory redistribution.
+
+Under the modeled assumptions, the optimized redistribution plan could potentially cover 80.65% of the forecasted deficit.
+
+Final Pipeline
+Historical Inventory Data → Next-Month Demand Forecasting → Quantile Forecasting (P10/P50/P90) → Predicted Deficit / Potential Surplus → LP Redistribution Recommendations
+
+---
+
+## Dataset
+
+The project uses multiple healthcare supply-chain datasets containing information about healthcare facilities, medical product consumption, inventory levels, national stock, and population-based demand and allocation.
+
+### Dataset Source
+
+- **Dataset:**  
+  https://doi.org/10.5061/dryad.h9w0vt4tw
+
+---
+
+### Data Files
+
+The dataset consists of five healthcare supply-chain data sources:
+
+- **S1 — Healthcare Facilities:** Facility metadata, including facility ID, facility type, and district.
+- **S2 — Inventory & Consumption:** Monthly facility-product inventory and consumption data and the main dataset used for analysis and integration.
+- **S3 — National Stock:** Medical supply stock data across different quarters. Random noise was added to comply with data privacy agreements.
+- **S4 — Alternative Data:** Similar to S2, with additional control-product information.
+- **S5 — Demand & Allocation:** Population-based demand estimates and allocation decisions for healthcare facilities and products.
+
+> **Note:** S4 was not included in the final integration. The final integrated dataset was built using S1, S2, S3, and S5.
+
+---
+
+## Exploratory Data Analysis
+
+Notebook:
+
+`EDA_dataset_Drive_Integrated_Ver2 (1).ipynb`
+
+The EDA pipeline included:
+
+- Dataset structure and coverage analysis
+- Missing value and duplicate checks
+- Inventory validity and zero-value analysis
+- Distribution and high-value observation analysis
+- Stockout analysis across time, products, districts, and facility types
+- Facility and hospital coverage analysis
+- Cross-dataset facility, product, and temporal validation
+- Duplicate-key analysis and consolidation
+- Dataset integration and final validation
+
+### Key EDA Findings
+
+#### S1 — Healthcare Facilities
+
+- **1,280 healthcare facilities** across **16 districts**
+- **5 facility types**, including **46 hospitals**
+- No missing values, duplicated rows, or duplicated facility IDs
+
+#### S2 — Inventory & Consumption
+
+- **457,225 monthly facility-product records**
+- **1,091 healthcare facilities**
+- **36 medical products**
+- Data covers **October 2019 – November 2023**
+- No missing values, duplicated records, or negative inventory quantities
+- Overall stockout rate: **13.55%** (**61,956 records**)
+
+#### S3 — National Stock
+
+- **340 records** after removing one exact duplicate
+- **150 unique medical items** across **4 quarters**
+- **10 zero-stock records**
+- No missing or negative stock values
+
+#### S5 — Demand & Allocation
+
+- **228,238 records** after removing **1,676 exact duplicates**
+- **1,092 healthcare facilities**
+- **36 products** across **16 quarters**
+- No negative demand or allocation values
+- Missing estimates were retained as unavailable values rather than replaced with zeros
+- Available population-based demand (`popD`) totaled approximately **52.88 million units** during quarters 12–14
+
+### S5 Duplicate-Key Resolution
+
+S5 contained repeated facility-product-quarter keys. Further analysis showed that some duplicated records represented distinct Q3 demand or allocation components.
+
+Distinct Q3 components were consolidated, while repeated Q2 and baseline values were retained once to prevent double-counting. The original S5 dataset remained unchanged, and the consolidation was performed in a separate analysis table.
+
+---
+
+## Final Integrated Dataset
+
+After EDA, validation, cleaning, and integration, **S2 was used as the main monthly backbone**, while S1, S3, and S5 provided additional facility, national stock, demand, and allocation information.
+
+| Dataset Information | Value |
+|---|---:|
+| Records | **457,225** |
+| Columns | **34** |
+| Healthcare Facilities | **1,091** |
+| Medical Products | **36** |
+| Districts | **16** |
+| Time Period | **Oct 2019 – Nov 2023** |
+
+The integration preserved all **457,225 monthly S2 records**.
+
+The final integrated dataset is prepared for:
+
+- Feature engineering
+- Demand forecasting
+- Stockout risk analysis
+- Medical supply allocation
+- Redistribution optimization
+
+---
+
+## Forecasting Task
+
+The final modeling task is **next-month medical product demand forecasting**.
+
+For each:
+
+**Facility × Product × Current Month**
+
+the model predicts:
+
+**Consumption in the next calendar month**
+
+The final target variable is:
+
+`target_consumption_next_month`
+
+Only observations with a valid next-calendar-month target were retained, resulting in:
+
+**313,698 eligible forecasting observations**
+
+---
+## Chronological Data Split
+
+A chronological split was used to prevent future information from leaking into model training.
+
+| Split | Rows | Period |
+|---|---:|---|
+| Train | **211,452** | Oct 2019 – Aug 2022 |
+| Validation | **39,864** | Sep 2022 – Feb 2023 |
+| Final Test | **62,382** | Mar 2023 – Oct 2023 |
+
+## Feature Engineering
+
+### Historical Demand & Inventory
+- Consumption lags
+- Received lags
+- Opening and closing balance lags
+- Historical stockout indicators
+- Rolling mean and standard deviation windows
+
+### Demand Dynamics
+- Recent demand growth
+- Recent vs. longer-term demand ratios
+- Coefficient of variation
+- Zero-consumption rates
+- Demand spike ratio
+- Demand momentum
+
+### Temporal Features
+- Year
+- Month
+- Quarter
+- Cyclical month encoding
+
+### Contextual / Pooled Features
+- Facility
+- Product
+- Facility type
+- District
+- Product-level lagged demand
+- District-product lagged demand
+
+## Models
+
+Five forecasting approaches were compared using the Validation set:
+
+1. Naive 3-Month Rolling Average
+2. Random Forest
+3. XGBoost Quantile
+4. LightGBM Quantile
+5. CatBoost Quantile
+
+### Validation Results
+
+| Model | MAE ↓ | RMSE ↓ | WAPE ↓ | R² ↑ |
+|---|---:|---:|---:|---:|
+| **XGBoost Quantile — P50** | **95.0108** | **323.9083** | **53.14%** | **0.3350** |
+| LightGBM Quantile — P50 | 95.0298 | 323.9994 | 53.16% | 0.3346 |
+| Random Forest | 115.0936 | 327.0622 | 64.38% | 0.3220 |
+| Naive 3M Rolling Average | 118.2048 | 361.3108 | 66.12% | 0.1726 |
+| CatBoost Quantile — P50 | 139.7397 | 405.4230 | 78.16% | -0.0418 |
+
+**XGBoost Quantile** was selected as the final model.
+
+It reduced MAE by approximately **19.62%** compared with the Naive 3-Month Rolling Average baseline.
+
+## Quantile Forecasting
+
+Instead of producing only a single demand estimate, the final model predicts three demand quantiles:
+
+- **P10** — lower-demand estimate
+- **P50** — median demand forecast
+- **P90** — conservative higher-demand estimate
+
+On Validation, XGBoost achieved **80.67% P10–P90 coverage**, close to the nominal 80% prediction interval.
+
+P90 was later used as the conservative planning demand for deficit and potential-surplus detection.
+
+---
+
+## Final Model Evaluation
+
+After model selection, the XGBoost Quantile models were retrained using **Train + Validation** and evaluated once on the previously untouched Final Test set.
+
+| Metric | Final Test |
+|---|---:|
+| P50 MAE | **76.2740** |
+| P50 RMSE | **322.3729** |
+| P50 WAPE | **53.68%** |
+| P50 R² | **0.3107** |
+| P10 Pinball Loss | **12.5628** |
+| P50 Pinball Loss | **38.1370** |
+| P90 Pinball Loss | **27.9193** |
+| P10–P90 Coverage | **81.51%** |
+
+The quantile interval remained well calibrated on unseen data, achieving **81.51% P10–P90 coverage**.
+
+---
+## Deficit & Potential Surplus Detection
+
+The final forecasts were compared with available inventory using **P90** as the conservative planning demand.
+
+- `Predicted Deficit = max(P90 - Available Inventory, 0)`
+- `Potential Surplus = max(Available Inventory - P90, 0)`
+
+Because the dataset does not provide an explicit clinical safety-stock policy, the term **Potential Surplus** is used rather than confirmed surplus.
+
+### Detection Results
+
+| Metric | Result |
+|---|---:|
+| Predicted Deficit Rows | **28,461** |
+| Potential Surplus Rows | **33,921** |
+| Total Predicted Deficit | **≈ 3.43 million units** |
+| Total Potential Surplus | **≈ 23.57 million units** |
+
+---
+
+## LP Redistribution Optimization
+
+A Linear Programming (LP) model was used to generate transfer recommendations between facilities.
+
+The optimization was performed independently for each **Product × Month** and followed two objectives:
+
+1. **Maximize the predicted deficit covered.**
+2. **Minimize transfer distance while preserving maximum coverage.**
+
+Transfers were constrained by donor surplus, receiver deficit, product and month matching, and no self-transfers.
+---
+## Final Redistribution Results
+
+| Metric | Result |
+|---|---:|
+| Predicted deficit before redistribution | **3,429,759 units** |
+| Potential surplus before redistribution | **23,574,940 units** |
+| Optimized transferred quantity | **2,766,062 units** |
+| Remaining unmet demand | **663,697 units** |
+| **Forecasted deficit coverage** | **80.65%** |
+| Recommended transfer rows | **32,877** |
+| Quantity-weighted mean transfer distance | **31.81 km** |
+| Median transfer distance | **14.03 km** |
 
 
 ---
