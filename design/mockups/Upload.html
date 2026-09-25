@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — Upload data</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+.label{font-size:12px;font-weight:600;color:#5F6F68}
+.srow{display:grid;grid-template-columns:150px 110px 80px minmax(0,1fr);column-gap:12px;align-items:center;padding:8px 4px;border-bottom:1px solid #EEF1EC;font-size:13px}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 80px;column-gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #EEF1EC;font-size:14px}
+.frow{display:grid;grid-template-columns:110px repeat(4,minmax(0,1fr)) 90px;column-gap:8px;align-items:center;padding:5px 0}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #EEF1EC;font-size:14px;line-height:1.45}
+.ico{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.i-ok{background:#E4EFE6;color:#1F5B3F}.i-warn{background:#F5ECDD;color:#74501A}.i-run{background:#EEF0EC;color:#46554F}
+.select,.input{height:40px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<aside class="side">
+<a class="brand" href="Main.dc.html" aria-label="Madad home"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div class="ws">Workspace / Warehouse</div>
+<nav aria-label="Warehouse" style="display: flex; flex-direction: column; gap: 4px;">
+<a class="nav" href="WarehouseHome.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>My Warehouse</a>
+<a class="nav" href="Forecasts.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M10 16V9"></path><path d="M14 16v-6"></path><path d="M18 16V6"></path></svg>Forecasted Needs</a>
+<a class="nav" href="Transfers.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg>Get &amp; Share Stock</a>
+<a class="nav on" href="Upload.dc.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Upload Data</a>
+<a class="nav" href="Assistant.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M8.5 11h.01"></path><path d="M12 11h.01"></path><path d="M15.5 11h.01"></path></svg>Ask Madad</a>
+</nav>
+<div class="care"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg><div style="font-size: 17px; font-weight: 700; line-height: 1.3; color: #16362B;">Connected supplies.<br>Better care.</div><div class="small muted">Facility 780 · Kambia · MCHP</div><div style="display: flex; gap: 14px; font-size: 12px; font-weight: 600; margin-top: 2px;"><a href="Main.dc.html">Switch workspace</a><a href="Model.dc.html">How it works</a></div></div>
+</aside>
+<main class="main" style="gap: 16px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+<div>
+<div class="crumb">Madad / Warehouse operations</div>
+<h1 class="h1">Upload Data</h1>
+<p class="sub">Add a new month of stock records. It must follow the Madad dataset format, because the model was trained on exactly these fields.</p>
+</div>
+<div style="display: flex; gap: 12px; align-items: center;"><a class="btn" href="#tpl">Download CSV template</a><div style="display: flex; gap: 10px; align-items: center;"><span class="portal">Hospital Portal</span><span class="av" role="img" aria-label="Warehouse manager">WM</span></div></div>
+</div>
+
+<ol aria-label="Upload steps" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+<li style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px; background: {{ st.bg }}; border: 1px solid {{ st.border }};">
+<span style="width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; background: {{ st.dot }}; color: {{ st.dotFg }};">{{ st.n }}</span>
+<span style="font-size: 14px; font-weight: 500;">{{ st.label }}</span>
+</li>
+</sc-for>
+</ol>
+
+<sc-if value="{{ is1 }}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="srcTitle" style="display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<h2 class="h2" id="srcTitle">Add your month</h2>
+<div style="display: flex; gap: 8px;" role="group" aria-label="Input method">
+<button class="{{ mFile.cls }}" aria-pressed="{{ mFile.on }}" onClick="{{ mFile.pick }}">Upload file</button>
+<button class="{{ mHand.cls }}" aria-pressed="{{ mHand.on }}" onClick="{{ mHand.pick }}">Enter manually</button>
+</div>
+</div>
+<sc-if value="{{ isFile }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<label for="file" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 250px; border: 2px dashed #B8CBBE; border-radius: 12px; background: #F7FAF6; cursor: pointer; text-align: center;">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>
+<span style="font-size: 16px; font-weight: 600;">Drop a CSV or Excel file here</span>
+<span class="small muted">or click to browse · one month per file · up to 1,091 facilities × 36 products</span>
+<input id="file" type="file" accept=".csv,.xlsx" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+</label>
+<sc-if value="{{ loaded }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: #E3F0E5; color: #1F4A27;">
+<span class="ico i-ok">✓</span>
+<div style="display: flex; flex-direction: column;"><span style="font-weight: 600; font-size: 14px;">facility_780_nov_2023.csv</span><span class="small">36 rows · 9 columns · read OK</span></div>
+</div>
+</sc-if>
+<sc-if value="{{ notLoaded }}" hint-placeholder-val="{{ true }}">
+<button class="btn" style="align-self: flex-start;" onClick="{{ loadExample }}">Use example file</button>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ isHand }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 12px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><label for="hf" class="label">Facility ID</label><input id="hf" class="input" value="780" style="width: 120px;"></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><label for="mo" class="label">Month</label><select id="mo" class="select"><option>Nov 2023</option><option>Dec 2023</option></select></div>
+<div style="display: flex; flex-direction: column; gap: 4px; justify-content: flex-end;"><span class="small muted" style="height: 40px; display: flex; align-items: center;">Kambia · MCHP (from facility registry)</span></div>
+</div>
+<div class="frow" style="border-bottom: 1px solid #E1DFD6;"><span class="label">Product</span><span class="label">Opening</span><span class="label">Received</span><span class="label">Used</span><span class="label">Closing</span><span class="label">Stocked out</span></div>
+<div class="frow"><span>Product 39</span><input class="input" aria-label="Opening, product 39" value="[ ]"><input class="input" aria-label="Received, product 39" value="[ ]"><input class="input" aria-label="Used, product 39" value="[ ]"><input class="input" aria-label="Closing, product 39" value="[ ]"><select class="select" aria-label="Stocked out, product 39"><option>No</option><option>Yes</option></select></div>
+<div class="frow"><span>Product 34</span><input class="input" aria-label="Opening, product 34" value="[ ]"><input class="input" aria-label="Received, product 34" value="[ ]"><input class="input" aria-label="Used, product 34" value="[ ]"><input class="input" aria-label="Closing, product 34" value="[ ]"><select class="select" aria-label="Stocked out, product 34"><option>No</option><option>Yes</option></select></div>
+<div class="frow"><span>Product 46</span><input class="input" aria-label="Opening, product 46" value="[ ]"><input class="input" aria-label="Received, product 46" value="[ ]"><input class="input" aria-label="Used, product 46" value="[ ]"><input class="input" aria-label="Closing, product 46" value="[ ]"><select class="select" aria-label="Stocked out, product 46"><option>No</option><option>Yes</option></select></div>
+<div class="small muted">+ 33 more products · Closing fills itself as Opening + Received − Used; you can override it.</div>
+</div>
+</sc-if>
+<div style="margin-top: auto; padding: 12px 14px; border-radius: 10px; background: #F4F3EE; font-size: 13px; line-height: 1.55;">
+<strong>Best fit:</strong> the next month for a facility already in the dataset (Nov 2023 onward). Madad adds its last 12 months of stored history automatically, so you only upload one month.
+</div>
+</section>
+
+<section class="card" id="tpl" aria-labelledby="fmtTitle" style="display: flex; flex-direction: column; gap: 8px;">
+<h2 class="h2" id="fmtTitle">Required format</h2>
+<div class="small muted">Same fields as the training data. Names can differ; step 2 matches them.</div>
+<div class="srow" style="border-bottom: 1px solid #E1DFD6;"><span class="label">Field</span><span class="label">Type</span><span class="label">Required</span><span class="label">Rule</span></div>
+<div class="srow"><span class="num">hf_pk</span><span>integer</span><span>Yes</span><span>One of the 1,091 known facilities</span></div>
+<div class="srow"><span class="num">productID</span><span>integer</span><span>Yes</span><span>One of the 36 dataset products</span></div>
+<div class="srow"><span class="num">month</span><span>YYYY-MM</span><span>Yes</span><span>One month per file</span></div>
+<div class="srow"><span class="num">openBalance</span><span>number ≥ 0</span><span>Yes</span><span>Stock at start of month</span></div>
+<div class="srow"><span class="num">received</span><span>number ≥ 0</span><span>Yes</span><span>Units received</span></div>
+<div class="srow"><span class="num">consumption</span><span>number ≥ 0</span><span>Yes</span><span>Units used</span></div>
+<div class="srow"><span class="num">closeBalance</span><span>number ≥ 0</span><span>Yes</span><span>≈ open + received − consumption</span></div>
+<div class="srow"><span class="num">stockout</span><span>0 / 1</span><span>Yes</span><span>Ran out during the month</span></div>
+<div class="srow"><span class="num">district, facility_type</span><span>text</span><span>New IDs</span><span>Filled from registry for known IDs</span></div>
+<div class="srow"><span class="num">lat, long</span><span>number</span><span>New IDs</span><span>Needed for transfer distances</span></div>
+<div class="small muted" style="margin-top: auto; line-height: 1.5;">Not needed: normAvg, normStd, lags and rolling averages. The server builds all 141 model features from your month plus stored history.</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="mapTitle" style="display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<h2 class="h2" id="mapTitle">Match your columns</h2>
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>AI suggested</span>
+</div>
+<div class="small muted" style="margin-bottom: 6px;">Check each match. Change any that look wrong.</div>
+<div class="mrow" style="border-bottom: 1px solid #E1DFD6;"><span class="label">Your column</span><span></span><span class="label">Madad field</span><span class="label">Match</span></div>
+<div class="mrow"><span>Facility Code</span><span class="muted">→</span><select class="select" aria-label="Map Facility Code"><option>hf_pk</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Item ID</span><span class="muted">→</span><select class="select" aria-label="Map Item ID"><option>productID</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Period</span><span class="muted">→</span><select class="select" aria-label="Map Period"><option>month</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Opening Stock</span><span class="muted">→</span><select class="select" aria-label="Map Opening Stock"><option>openBalance</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Qty Received</span><span class="muted">→</span><select class="select" aria-label="Map Qty Received"><option>received</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Qty Issued</span><span class="muted">→</span><select class="select" aria-label="Map Qty Issued"><option>consumption</option></select><span class="pill p-risk">Check</span></div>
+<div class="mrow"><span>Closing Stock</span><span class="muted">→</span><select class="select" aria-label="Map Closing Stock"><option>closeBalance</option></select><span class="pill p-ok">Sure</span></div>
+<div class="mrow"><span>Stocked out?</span><span class="muted">→</span><select class="select" aria-label="Map Stocked out"><option>stockout</option></select><span class="pill p-ok">Sure</span></div>
+<div class="small muted" style="margin-top: auto; line-height: 1.5;">“Issued” usually means consumption at a facility, but at a store it can mean sent to other sites. Confirm before running.</div>
+</section>
+
+<section class="card" aria-labelledby="chkTitle" style="display: flex; flex-direction: column;">
+<h2 class="h2" id="chkTitle">Checks against the dataset</h2>
+<div class="check"><span class="ico i-ok">✓</span><div>All 8 required fields found.</div></div>
+<div class="check"><span class="ico i-ok">✓</span><div>Facility 780 found in the registry: Kambia, MCHP, with coordinates.</div></div>
+<div class="check"><span class="ico i-ok">✓</span><div>All 36 product IDs recognised.</div></div>
+<div class="check"><span class="ico i-ok">✓</span><div>History on file: 12 months (Nov 2022 – Oct 2023). Enough for every model feature.</div></div>
+<div class="check"><span class="ico i-warn">!</span><div><strong>2 rows don't balance</strong> (closing ≠ opening + received − used).<div style="display: flex; gap: 8px; margin-top: 8px;"><button class="btn btn-sm">Review rows</button><button class="btn btn-sm">Use calculated closing</button></div></div></div>
+<div class="check"><span class="ico i-ok">✓</span><div>No negative values. No duplicate facility + product rows.</div></div>
+<div style="margin-top: auto; padding: 12px 14px; border-radius: 10px; background: #F4F3EE; font-size: 13px; line-height: 1.55;">
+<strong>Unknown facility IDs</strong> are allowed only with district, type and location. Their forecasts are less reliable because the model never saw them.
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="runTitle" aria-live="polite" style="display: flex; flex-direction: column;">
+<h2 class="h2" id="runTitle" style="margin-bottom: 6px;">Run the models on your month</h2>
+<sc-for list="{{ pipe }}" as="p" hint-placeholder-count="5">
+<div class="check"><span class="{{ p.ico }}">{{ p.mark }}</span><div><div style="font-weight: 600;">{{ p.t }}</div><div class="small muted" style="margin-top: 2px;">{{ p.d }}</div></div></div>
+</sc-for>
+<div style="display: flex; gap: 10px; margin-top: auto; padding-top: 16px;">
+<sc-if value="{{ notRan }}" hint-placeholder-val="{{ true }}"><button class="btn btn-pri" onClick="{{ run }}">Run forecast</button></sc-if>
+<span class="small muted" style="align-self: center;">Typical run: a few seconds for one facility</span>
+</div>
+</section>
+<aside class="card" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.55;">
+<h2 class="h2">What stays the same</h2>
+<div>The model is not retrained. Your month is scored with the same trained model and settings as the rest of the site.</div>
+<div>Your upload lives in your workspace. The base Sierra Leone dataset is never changed.</div>
+<h2 class="h2" style="margin-top: 6px;">Where donor stock comes from</h2>
+<div>Transfers need other facilities' stock for the same month. If they haven't uploaded yet, Madad uses their last reported stock and marks those suggestions “based on Oct 2023 stock”.</div>
+</aside>
+</div>
+</sc-if>
+
+<sc-if value="{{ is4 }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="resTitle" style="display: flex; flex-direction: column; gap: 14px;">
+<div>
+<div class="label">Facility 780 · Nov 2023 stock → Dec 2023 forecast</div>
+<h2 id="resTitle" style="font-size: 24px; font-weight: 600; margin: 6px 0 0;">Your forecast is ready</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;">
+<div style="padding: 14px; border-radius: 10px; background: #F4F3EE;"><div class="label">Products</div><div class="num" style="font-size: 26px; margin-top: 4px;">36</div></div>
+<div style="padding: 14px; border-radius: 10px; background: #FBE7E4;"><div class="label" style="color: #7A2014;">Short</div><div class="num" style="font-size: 26px; margin-top: 4px; color: #7A2014;">[n]</div></div>
+<div style="padding: 14px; border-radius: 10px; background: #E4ECF7;"><div class="label" style="color: #173D6E;">Surplus</div><div class="num" style="font-size: 26px; margin-top: 4px; color: #173D6E;">[n]</div></div>
+<div style="padding: 14px; border-radius: 10px; background: #E3F0E5;"><div class="label" style="color: #1F4A27;">Covered</div><div class="num" style="font-size: 26px; margin-top: 4px; color: #1F4A27;">[n]</div></div>
+</div>
+<div style="padding: 14px 16px; border-radius: 12px; background: #F3F6F1; border: 1px solid #D5E1D8;">
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Summary of your upload · AI</span>
+<p style="font-size: 14px; line-height: 1.6; margin: 8px 0 0;">[Two or three sentences written from the results: which products will run short in December, which nearby facilities can help, and anything the checks flagged.]</p>
+</div>
+<div style="display: flex; gap: 10px; margin-top: auto;">
+<a class="btn btn-pri" href="Explorer.dc.html">Open in Facility explorer</a>
+<a class="btn" href="Redistribution.dc.html">See transfer options</a>
+<a class="btn" href="Assistant.dc.html">Ask about this upload</a>
+</div>
+</section>
+<aside class="card" style="display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.55;">
+<h2 class="h2">Your uploads</h2>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEECE5;"><span>facility_780_nov_2023.csv</span><span class="pill p-ok">Scored</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEECE5;"><span class="muted">[Earlier upload]</span><span class="pill p-neu">Scored</span></div>
+<div class="small muted" style="margin-top: auto;">Results from uploads show with an “Uploaded” tag everywhere on the site, so they never mix silently with the test-period data.</div>
+</aside>
+</div>
+</sc-if>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<button class="btn" onClick="{{ back }}">Back</button>
+<button class="btn btn-pri" onClick="{{ next }}">{{ nextLabel }}</button>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 1, mode: 'file', loaded: false, ran: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const labels = ['Add your month', 'Check and match', 'Run models', 'Results'];
+    const steps = labels.map((l, i) => {
+      const n = i + 1;
+      const done = n < st.step;
+      const cur = n === st.step;
+      return {
+        n: done ? '✓' : String(n), label: l,
+        bg: cur ? '#FFFFFF' : 'transparent',
+        border: cur ? '#055444' : '#E3E7DF',
+        dot: cur || done ? '#055444' : '#EAEFE8',
+        dotFg: cur || done ? '#FFFFFF' : '#46554F'
+      };
+    });
+    const mode = (k) => ({ cls: st.mode === k ? 'chip on' : 'chip', on: st.mode === k ? 'true' : 'false', pick: () => this.setState({ mode: k }) });
+    const pipeDefs = [
+      { t: 'Build features', d: 'Your month + 12 stored months → lags, rolling averages, district and national demand (141 features)' },
+      { t: 'Forecast next month', d: 'Same trained XGBoost P10 / P50 / P90 models, no retraining' },
+      { t: 'Compare with stock', d: 'Shortfall = P90 − closing stock, surplus = closing stock − P90' },
+      { t: 'Match donors', d: 'Two-stage LP with other facilities for the same product and month' },
+      { t: 'Write explanations', d: 'AI summaries and transfer requests from the results' }
+    ];
+    const pipe = pipeDefs.map((p) => ({ t: p.t, d: p.d, ico: st.ran ? 'ico i-ok' : 'ico i-run', mark: st.ran ? '✓' : '·' }));
+    const nextLabels = { 1: 'Check file', 2: 'Continue', 3: 'See results', 4: 'Upload another month' };
+    return {
+      steps: steps,
+      is1: st.step === 1, is2: st.step === 2, is3: st.step === 3, is4: st.step === 4,
+      mFile: mode('file'), mHand: mode('hand'),
+      isFile: st.mode === 'file', isHand: st.mode === 'hand',
+      loaded: st.loaded, notLoaded: !st.loaded,
+      loadExample: () => this.setState({ loaded: true }),
+      pipe: pipe, notRan: !st.ran,
+      run: () => this.setState({ ran: true }),
+      nextLabel: nextLabels[st.step],
+      next: () => {
+        if (st.step === 4) { this.setState({ step: 1, loaded: false, ran: false }); return; }
+        if (st.step === 3 && !st.ran) { this.setState({ ran: true, step: 4 }); return; }
+        this.setState({ step: st.step + 1, loaded: st.step === 1 ? true : st.loaded });
+      },
+      back: () => this.setState({ step: Math.max(1, st.step - 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

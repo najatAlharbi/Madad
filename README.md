@@ -1,11 +1,210 @@
 # MADAD — Intelligent Medical Inventory Management
 
-MADAD is a healthcare-focused data science project that explores the use of machine learning, optimization, and computer vision to support intelligent medical inventory management and medication verification.
+MADAD forecasts how much of each medical supply a hospital warehouse will use next
+month, flags what will run short, and works out where the missing stock can come from.
 
-The project currently consists of two complementary components:
+It is both a data science project (notebooks, models, evaluation) and a web app (FastAPI
+backend + React frontend) that puts those models in front of two kinds of user.
 
-1. **Medical Inventory Forecasting & Redistribution**
-2. **Visual Medication Verification using NLM20**
+- **Quickstart** — [Running the app](#running-the-app), below.
+- **Architecture** — [docs/architecture.md](docs/architecture.md).
+- **Model documentation** — [docs/models.md](docs/models.md).
+- **Data investigation** — [docs/data_profile.md](docs/data_profile.md).
+- **Design system** — [design/design-tokens.md](design/design-tokens.md), [design/screens.md](design/screens.md).
+
+## What it does
+
+1. **Forecast** — three XGBoost quantile models predict next month's consumption per
+   facility and product as P10 / P50 / P90.
+2. **Detect** — shortfall is `P90 − stock`, surplus is `stock − P90`.
+3. **Redistribute** — a two-stage LP matches donors to receivers: first maximise the
+   shortage covered, then minimise total distance × quantity.
+4. **Explain** — an assistant answers questions using only those numbers.
+
+Two views, no login: a **Hospital Warehouse Manager** who uploads a month and acts on it,
+and a read-only **Regulatory Authority** network view built from precomputed results.
+
+---
+
+# Running the app
+
+## Prerequisites
+
+- **Python 3.11+** (developed and verified on 3.13)
+- **Node 20+** (verified on 24)
+- The dataset zip at the repo root. `data/` and `models/` are git-ignored, so a fresh
+  clone builds them locally in the steps below.
+
+## 1. Backend
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # macOS/Linux
+pip install -r requirements.txt
+```
+
+Every `python -m app.*` command below runs **from the `backend/` directory** — the
+package is `app`, rooted at `backend/app/`, and is not importable from the repo root.
+
+## 2. Data and models
+
+From the repo root:
+
+```bash
+python scripts/unpack_data.py      # zip -> data/raw/
+python scripts/prepare_data.py     # -> data/processed/panel.parquet + facilities.parquet
+cd backend
+python -m app.ml.train             # ~5 min on CPU -> models/*.joblib
+python -m app.ml.evaluate          # -> reports/metrics.json; exits non-zero if it fails its gates
+cd ..
+python scripts/export_artifacts.py # authority JSONs + the demo facility month
+```
+
+`train` and `evaluate` print their own progress (row counts, per-model timings, the
+metrics table). Expect coverage ≈ 81.5%, MAE ≈ 76, WAPE ≈ 54%, R² ≈ 0.31.
+
+`export_artifacts.py` re-checks the artifacts and the metrics gate before it writes
+anything, then solves the redistribution LP across the whole test period. **It takes a
+while** (8 months × 36 products) — it is a batch job so the authority pages never solve
+at request time. The repo ships its output, so you only need to re-run it after
+retraining.
+
+Models are trained **once, offline**. The API loads them at startup and never retrains;
+a forecast request costs ~0.4s. See [docs/architecture.md](docs/architecture.md).
+
+## 3. Chatbot key (optional)
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+Put a free [Groq](https://console.groq.com/keys) key in `GROQ_API_KEY`. Without it every
+other feature works and `/api/chat` returns a labelled *"LLM not configured"* error — it
+never invents an answer.
+
+Check which models your key can actually reach before changing `GROQ_MODEL` — keys differ:
+
+```bash
+cd backend && .venv/Scripts/python -c "from groq import Groq; import os; from dotenv import load_dotenv; load_dotenv(); print([m.id for m in Groq(api_key=os.getenv('GROQ_API_KEY')).models.list().data])"
+```
+
+## 4. Run both servers
+
+Two terminals:
+
+```bash
+# terminal 1 — from backend/
+uvicorn app.main:app --reload --port 8000
+
+# terminal 2 — from frontend/
+npm install
+npm run dev
+```
+
+Open **http://localhost:5173**. The Vite dev server proxies `/api` to port 8000, so the
+browser sees a single origin and the session cookie works without CORS configuration.
+
+Check the backend alone with:
+
+```bash
+curl http://localhost:8000/api/health
+```
+
+Then: pick **Hospital Warehouse Manager** → **Upload Data** → **Load demo facility** →
+**Run forecast**. You get real model output in about a second.
+
+### What an upload needs
+
+Six columns. Supplies are identified **by name** — managers know
+"Folic Acid 5mg", not code `34`:
+
+```csv
+facility_id,product_name,month,received,consumption,closing_balance
+1047,"Folic Acid 5mg, Tab",2023-11,0,2000,29470
+```
+
+Everything else the models need is worked out server-side, so it is never the user's
+problem:
+
+| Worked out | How |
+|---|---|
+| `opening_balance` | `closing + consumption − received` |
+| `stockout` | whether the month ended at zero |
+| `product_id` | matched from the name, tolerating case, punctuation and partials |
+| `facility_type`, `district` | looked up in the facility registry |
+| `normAvg`, `normStd` | product constants from the panel |
+
+Verified: the derived values match the stored panel exactly, and forecasts are
+**identical** to using the original full-column rows. `GET /api/upload/template` returns
+a CSV already listing all 36 supply names, so the spelling always matches.
+
+Column names may differ from the above — you confirm a mapping in step 2.
+
+**New facilities** (never in the dataset) work — add `facility_type` and `district`
+columns so the forecast uses this facility's real attributes instead of a training-set
+average. Either way, a facility with no stored history is flagged **"Low confidence — no
+recent history"** on its forecast, so a thin number is never presented as a solid one.
+See `data/test_uploads/new_facility_never_seen_before.csv`.
+
+**Forecasting past the data's range** (the model was trained on Oct 2019–Nov 2023) isn't
+something more code can fix — it needs real inventory data for those months. A row dated
+far outside the training range gets the same **low-confidence flag**: XGBoost can't
+extrapolate a year value it never saw, so the result falls back to defaults rather than
+a genuine trend. Keep collecting real monthly reports and retrain
+(`python -m app.ml.train`) to extend the model's real range.
+
+### Test data for the warehouse view
+
+`data/test_uploads/` holds five files to upload by hand (regenerate with
+`python scripts/make_test_uploads.py`). All are real facility-months, so the forecasts
+have genuine history behind them. Each covers **2023-11**, so the app forecasts
+**2023-12**.
+
+| File | Facility | What it exercises |
+|---|---|---|
+| `clean_facility_1047_2023-11.csv` | Hospital, Tonkolili, 24 supplies | Happy path — six columns, every check passes. Well stocked: 22 surplus, 2 at risk |
+| `custom_headers_facility_637_2023-11.csv` | CHC, Pujehun | The mapping step — columns named `Site Code`, `Item Description`, `Qty Used`… all matched, flagged low-confidence for you to confirm |
+| `with_problems_facility_776_2023-11.csv` | CHC, Kambia, 25 rows | Validation — **blocked** rows for a negative balance, an untracked supply ("Aspirin 300mg") and a duplicate. The other rows still forecast |
+| `with_codes_facility_620_2023-11.csv` | CHC, Pujehun | The optional `product_id` column, cross-checked against the name |
+| `new_facility_never_seen_before.csv` | **New**, CHC, Bo | A facility not in the dataset at all — supplies its own type/district, gets a real forecast flagged **low confidence** |
+
+The **Load demo facility** button uses `data/demo/facility_780_2023-03.csv` instead — a
+facility in a much worse position (5 critical), which better demonstrates the shortage
+and transfer flows.
+
+## 5. Tests
+
+```bash
+cd backend
+python -m pytest -q                  # 65 tests, ~75s
+```
+
+The UI is verified in a real browser too — it walks the whole journey, screenshots every
+screen, and fails on any console error or failed request. With both servers running:
+
+```bash
+cd frontend
+npx playwright install chromium      # first time only
+node scripts/verify-ui.mjs           # -> frontend/verify-shots/*.png
+```
+
+## Sessions are temporary
+
+There is no database and no login. A session lives in the backend's memory for 60
+minutes of inactivity, and **restarting the backend ends every session** — by design.
+When that happens the API returns HTTP 410 and the UI asks you to run the forecast
+again.
+
+---
+
+## The two components
+
+1. **Medical Inventory Forecasting & Redistribution** — the web app and the models
+   behind it (sections below).
+2. **Visual Medication Verification using NLM20** — a separate computer-vision study
+   ([NLM20_Visual_Verification/](NLM20_Visual_Verification/)), not part of the app.
 
 ---
 
@@ -677,3 +876,25 @@ The two components address complementary tasks:
 
 **Visual Medication Verification → Image Classification, NDC Identification, and Medication Verification**
 
+# Repository layout
+
+```
+backend/
+  app/
+    main.py              FastAPI app + routers
+    api/                 health, session, upload, forecast, transfers, authority, chat
+    core/config.py       every path and setting, env-overridable
+    ml/                  features, train, evaluate, predict, rules, redistribute, health
+    llm/chat.py          Groq-backed assistant, grounded in the session's forecast
+    data/authority/      precomputed network JSONs the authority view serves
+  tests/
+frontend/
+  src/{pages,components,lib,styles}/
+design/                  tokens, screens spec, approved mockups, logo
+scripts/                 unpack_data, prepare_data, profile_data, export_artifacts
+docs/                    models.md, data_profile.md
+data/  models/  reports/  git-ignored build outputs (see Quickstart)
+```
+
+Paths are defined once in [backend/app/core/config.py](backend/app/core/config.py) and
+overridable by environment variable; nothing else in the project hard-codes one.

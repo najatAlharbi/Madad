@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — How it works</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+.step{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.stepn{width:30px;height:30px;border-radius:50%;background:#055444;color:#FFFFFF;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #EEF1EC;font-size:14px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<main class="main" style="padding: 32px 64px 36px; gap: 22px;">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 24px;">
+<a class="brand" href="Main.dc.html" aria-label="Madad home" style="padding: 0;"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div style="display: flex; gap: 10px;"><a class="btn" href="WarehouseHome.dc.html">Warehouse workspace</a><a class="btn" href="AuthorityHome.dc.html">Authority workspace</a></div>
+</div>
+<div>
+<div class="eyebrow">Trust and transparency</div>
+<h1 class="h1" style="font-size: 36px;">How Madad works</h1>
+<p class="sub">Four steps turn a monthly stock count into a transfer plan. Every number in Madad traces back to one of them.</p>
+</div>
+
+<section aria-label="Pipeline" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;">
+<div class="step">
+<div style="display: flex; align-items: center; gap: 10px;"><span class="stepn">1</span><span class="h2">Forecast</span></div>
+<p style="font-size: 13px; line-height: 1.55; margin: 0;">Three XGBoost quantile models predict next month's use for every facility + product as a low (P10), likely (P50) and high (P90) value.</p>
+<div class="small muted">141 features: up to 12 months of history, district and national demand, season</div>
+</div>
+<div class="step">
+<div style="display: flex; align-items: center; gap: 10px;"><span class="stepn">2</span><span class="h2">Detect</span></div>
+<p style="font-size: 13px; line-height: 1.55; margin: 0;">Compare stock to the high forecast. Shortfall = P90 − stock. Surplus = stock − P90.</p>
+<div class="small muted">Busy-month planning: a facility only counts as having surplus if it would still cover a busy month</div>
+</div>
+<div class="step">
+<div style="display: flex; align-items: center; gap: 10px;"><span class="stepn">3</span><span class="h2">Redistribute</span></div>
+<p style="font-size: 13px; line-height: 1.55; margin: 0;">A linear program matches donors to receivers per product and month: first cover the most shortage, then keep distances short.</p>
+<div class="small muted">Distance from facility coordinates (haversine), 256 product-month problems</div>
+</div>
+<div class="step">
+<div style="display: flex; align-items: center; gap: 10px;"><span class="stepn">4</span><span class="h2">Explain</span></div>
+<p style="font-size: 13px; line-height: 1.55; margin: 0;">An LLM turns results into plain language: answers, briefs and transfer requests. It reads results through tools and never creates numbers.</p>
+<div class="small muted">English and Arabic · sources shown on every answer</div>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="fcTitle">
+<h2 class="h2" id="fcTitle">Forecast quality</h2>
+<div class="small muted" style="margin: 4px 0 10px;">Test months Mar–Oct 2023 · 62,382 rows the model never saw</div>
+<div class="mrow"><span>Actual inside P10–P90 range</span><span class="num" style="color: #055444; font-weight: 500;">81.5%</span></div>
+<div class="mrow"><span>Target for that range</span><span class="num">80%</span></div>
+<div class="mrow"><span>P50 average error (MAE)</span><span class="num">76.3 units</span></div>
+<div class="mrow"><span>P50 weighted error (WAPE)</span><span class="num">53.7%</span></div>
+<div class="mrow"><span>P50 R²</span><span class="num">0.31</span></div>
+<div class="mrow"><span>Average range width</span><span class="num">222.4 units</span></div>
+<p style="font-size: 13px; line-height: 1.55; margin: 12px 0 0;"><strong>In short:</strong> the range is well calibrated. The single P50 number is rough, so the site always shows the range.</p>
+</section>
+
+<section class="card" aria-labelledby="readTitle" style="display: flex; flex-direction: column; gap: 12px;">
+<h2 class="h2" id="readTitle">How to read a forecast</h2>
+<div style="position: relative; height: 88px; margin-top: 8px;">
+<div style="position: absolute; left: 0; right: 0; top: 40px; height: 2px; background: #E3E7DF;"></div>
+<div style="position: absolute; left: 16%; width: 58%; top: 32px; height: 18px; border-radius: 9px; background: #CFE0D6;"></div>
+<div style="position: absolute; left: 31.5%; top: 26px; width: 4px; height: 30px; border-radius: 2px; background: #055444;"></div>
+<div style="position: absolute; left: 28.5%; top: 18px; width: 2px; height: 46px; background: #9E8251;"></div>
+<span class="num small" style="position: absolute; left: 8%; top: 62px;">P10 19</span>
+<span class="num small" style="position: absolute; left: 29%; top: 0;">P50 35</span>
+<span class="num small" style="position: absolute; left: 68%; top: 62px;">P90 78</span>
+<span class="small" style="position: absolute; left: 30%; top: 66px;">stock 32</span>
+</div>
+<div style="font-size: 13px; line-height: 1.6; display: flex; flex-direction: column; gap: 6px;">
+<div><strong>P10:</strong> only a 1 in 10 chance use is lower.</div>
+<div><strong>P50:</strong> the most likely value. Half the time it's more.</div>
+<div><strong>P90:</strong> only a 1 in 10 chance use is higher. Madad plans on this.</div>
+<div><strong>Stock line left of P90:</strong> the facility may run short in a busy month.</div>
+</div>
+<div class="small muted" style="margin-top: auto;">Example: Facility 780, Product 39, April 2023</div>
+</section>
+
+<section class="card" aria-labelledby="limTitle" style="display: flex; flex-direction: column; gap: 10px;">
+<h2 class="h2" id="limTitle">Data and limits</h2>
+<div class="mrow"><span>Facilities · products</span><span class="num">1,091 · 36</span></div>
+<div class="mrow"><span>Training months</span><span class="num">Oct 2019 – Feb 2023</span></div>
+<div class="mrow"><span>Transfer coverage (test)</span><span class="num">80.6%</span></div>
+<div style="font-size: 13px; line-height: 1.55; display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+<div>Forecasts one month ahead only.</div>
+<div>Surplus has no safety buffer yet; the data has no official safety-stock policy.</div>
+<div>Shows facility and product IDs, not names.</div>
+<div>Recommendations support decisions. A person approves every transfer.</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

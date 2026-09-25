@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — Forecasted needs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) 86px;column-gap:10px;align-items:center;padding:12px 10px;border-radius:10px;cursor:pointer;border:0;width:100%;text-align:left;font-family:inherit;background:transparent}
+.lrow:hover{background:#F4F6F1}
+.qcard{padding:14px 16px;border-radius:12px;background:#F4F6F1}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<aside class="side">
+<a class="brand" href="Main.dc.html" aria-label="Madad home"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div class="ws">Workspace / Warehouse</div>
+<nav aria-label="Warehouse" style="display: flex; flex-direction: column; gap: 4px;">
+<a class="nav" href="WarehouseHome.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>My Warehouse</a>
+<a class="nav on" href="Forecasts.dc.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M10 16V9"></path><path d="M14 16v-6"></path><path d="M18 16V6"></path></svg>Forecasted Needs</a>
+<a class="nav" href="Transfers.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg>Get &amp; Share Stock</a>
+<a class="nav" href="Upload.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Upload Data</a>
+<a class="nav" href="Assistant.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M8.5 11h.01"></path><path d="M12 11h.01"></path><path d="M15.5 11h.01"></path></svg>Ask Madad</a>
+</nav>
+<div class="care"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg><div style="font-size: 17px; font-weight: 700; line-height: 1.3; color: #16362B;">Connected supplies.<br>Better care.</div><div class="small muted">Facility 780 · Kambia · MCHP</div><div style="display: flex; gap: 14px; font-size: 12px; font-weight: 600; margin-top: 2px;"><a href="Main.dc.html">Switch workspace</a><a href="Model.dc.html">How it works</a></div></div>
+</aside>
+<main class="main">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+<div>
+<div class="crumb">Madad / Warehouse operations</div>
+<h1 class="h1">Forecasted Needs</h1>
+</div>
+<div style="display: flex; gap: 12px; align-items: center;"><span class="demo">Sample data</span><div style="display: flex; gap: 10px; align-items: center;"><span class="portal">Hospital Portal</span><span class="av" role="img" aria-label="Warehouse manager">WM</span></div></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 370px minmax(0, 1fr); gap: 16px; flex-grow: 1; min-height: 0;">
+
+<section class="card" aria-label="Supplies" style="display: flex; flex-direction: column; padding: 18px 16px; min-height: 0;">
+<div style="padding: 0 10px 12px;">
+<h2 class="h2">April 2023</h2>
+<div class="seg" role="group" aria-label="Which supplies to show" style="margin-top: 12px; width: 100%;">
+<button class="{{ vAct.cls }}" aria-pressed="{{ vAct.on }}" onClick="{{ vAct.pick }}" style="flex-grow: 1;">Need action (4)</button>
+<button class="{{ vAll.cls }}" aria-pressed="{{ vAll.on }}" onClick="{{ vAll.pick }}" style="flex-grow: 1;">All (36)</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; overflow: hidden;">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+<button class="lrow" onClick="{{ r.pick }}" aria-pressed="{{ r.on }}" style="background: {{ r.bg }};">
+<span>
+<span style="display: block; font-size: 15px; font-weight: 700;">Product {{ r.p }}</span>
+<span class="small muted" style="display: block; margin-top: 3px;">{{ r.line }}</span>
+<span style="display: block; height: 8px; border-radius: 4px; background: #EEF1EC; margin-top: 8px; overflow: hidden;"><span style="display: block; height: 8px; border-radius: 4px; width: {{ r.cover }}%; background: {{ r.color }};"></span></span>
+</span>
+<span class="{{ r.cls }}" style="justify-self: end;">{{ r.tag }}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section class="card" aria-labelledby="fcTitle" style="display: flex; flex-direction: column; gap: 18px; min-height: 0;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+<div>
+<div class="eyebrow">Facility 780 · XGBoost quantile forecast</div>
+<h2 id="fcTitle" style="font-size: 24px; font-weight: 700; margin: 6px 0 0;">Product {{ s.p }}</h2>
+</div>
+<span class="{{ s.cls }}">{{ s.tag }}</span>
+</div>
+
+<div>
+<svg width="100%" viewBox="0 0 780 300" role="img" aria-label="{{ s.alt }}" style="display: block;">
+<g stroke="#EEF1EC" stroke-width="1"><line x1="56" y1="260" x2="748" y2="260"></line><line x1="56" y1="140" x2="748" y2="140"></line><line x1="56" y1="20" x2="748" y2="20"></line></g>
+<g font-size="11" fill="#5F6F68" text-anchor="end" font-family="Segoe UI, Noto Sans, sans-serif"><text x="46" y="264">0</text><text x="46" y="144">{{ s.gMid }}</text><text x="46" y="24">{{ s.gTop }}</text></g>
+<rect x="685" y="20" width="63" height="240" fill="#F7F9F5"></rect>
+<line x1="685" y1="20" x2="685" y2="260" stroke="#D3DAD0" stroke-width="1" stroke-dasharray="4 4"></line>
+<text x="716" y="34" font-size="10" fill="#5F6F68" text-anchor="middle" font-family="Segoe UI, Noto Sans, sans-serif">FORECAST</text>
+<polygon points="{{ s.cone }}" fill="#CFE0D6"></polygon>
+<line x1="700" y1="{{ s.p90Y }}" x2="732" y2="{{ s.p90Y }}" stroke="#9BBBA9" stroke-width="2"></line>
+<line x1="700" y1="{{ s.p10Y }}" x2="732" y2="{{ s.p10Y }}" stroke="#9BBBA9" stroke-width="2"></line>
+<line x1="56" y1="{{ s.stockY }}" x2="748" y2="{{ s.stockY }}" stroke="#9E8251" stroke-width="2" stroke-dasharray="6 5"></line>
+<polyline fill="none" stroke="#16362B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" points="{{ s.hist }}"></polyline>
+<line x1="{{ s.lastX }}" y1="{{ s.lastY }}" x2="716" y2="{{ s.p50Y }}" stroke="#055444" stroke-width="2.6" stroke-dasharray="7 5"></line>
+<circle cx="716" cy="{{ s.p50Y }}" r="6" fill="#055444"></circle>
+<circle cx="716" cy="{{ s.actY }}" r="6" fill="#FFFFFF" stroke="#9B2F2A" stroke-width="2.5" opacity="{{ s.actOpacity }}"></circle>
+<text x="744" y="{{ s.p90TextY }}" font-size="11" fill="#3E4F48" text-anchor="end" font-family="Segoe UI, Noto Sans, sans-serif">{{ s.p90 }}</text>
+<text x="744" y="{{ s.p10TextY }}" font-size="11" fill="#3E4F48" text-anchor="end" font-family="Segoe UI, Noto Sans, sans-serif">{{ s.p10 }}</text>
+<g font-size="11" fill="#5F6F68" text-anchor="middle" font-family="Segoe UI, Noto Sans, sans-serif">
+<text x="64" y="282">Apr ’22</text><text x="172" y="282">Jun</text><text x="280" y="282">Aug</text><text x="388" y="282">Oct</text><text x="496" y="282">Dec</text><text x="604" y="282">Feb</text><text x="716" y="282" font-weight="700" fill="#16362B">Apr ’23</text>
+</g>
+</svg>
+<div style="display: flex; gap: 20px; font-size: 12px; color: #5F6F68; flex-wrap: wrap; margin-top: 4px;">
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 3px; background: #16362B;"></span>Actual consumption</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; border-top: 3px dashed #055444;"></span>Forecasted consumption (P50)</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 13px; height: 13px; border-radius: 3px; background: #CFE0D6;"></span>Forecast range (P10–P90)</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; border-top: 2px dashed #9E8251;"></span>Stock on hand</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #9B2F2A;"></span>{{ s.actNote }}</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;">
+<div class="qcard"><div class="small muted">Forecast low (P10)</div><div class="num" style="font-size: 22px; font-weight: 700; margin-top: 4px;">{{ s.p10 }}</div></div>
+<div class="qcard" style="background: #E6EFE8;"><div class="small" style="color: #055444; font-weight: 600;">Forecast (P50)</div><div class="num" style="font-size: 22px; font-weight: 700; margin-top: 4px; color: #055444;">{{ s.p50 }}</div></div>
+<div class="qcard"><div class="small muted">Forecast high (P90)</div><div class="num" style="font-size: 22px; font-weight: 700; margin-top: 4px;">{{ s.p90 }}</div></div>
+<div class="qcard" style="background: {{ s.gapBg }};"><div class="small" style="color: {{ s.gapFg }}; font-weight: 600;">{{ s.gapLabel }}</div><div class="num" style="font-size: 22px; font-weight: 700; margin-top: 4px; color: {{ s.gapFg }};">{{ s.gapS }}</div></div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 26px; padding: 14px 18px; border-radius: 12px; border: 1px solid #E3E7DF;">
+<div><div class="small muted">Range hit rate</div><div class="num" style="font-size: 16px; font-weight: 700; margin-top: 2px;">81.5%</div></div>
+<div><div class="small muted">P50 error</div><div class="num" style="font-size: 16px; font-weight: 700; margin-top: 2px;">76 units</div></div>
+<div><div class="small muted">Tested on</div><div class="num" style="font-size: 16px; font-weight: 700; margin-top: 2px;">62,382 unseen records</div></div>
+<a href="Model.dc.html" class="small" style="margin-left: auto; font-weight: 600;">How it works</a>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 14px;">
+<div class="ai" style="padding: 14px 16px;">
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Reading</span>
+<p style="font-size: 14px; line-height: 1.6; margin: 8px 0 0; color: #3E4F48;">{{ s.ai }}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; justify-content: center;">
+<a class="btn btn-pri" href="{{ s.href }}">{{ s.cta }}</a>
+<a class="btn" href="Assistant.dc.html">Ask about it</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: '39', view: 'act' };
+  }
+  renderVals() {
+    const base = [
+      { p: '39', stock: 32, p10: 19.4, p50: 35.4, p90: 77.6, actual: 42, hist: [28, 34, 41, 30, 25, 38, 44, 36, 29, 33, 40, 31] },
+      { p: '46', stock: 60, p10: 30, p50: 70, p90: 130, hist: [55, 62, 48, 70, 66, 58, 75, 69, 61, 72, 64, 59] },
+      { p: '50', stock: 15, p10: 12, p50: 40, p90: 90, network: true, hist: [30, 26, 35, 42, 38, 33, 45, 40, 36, 44, 39, 41] },
+      { p: '34', stock: 120, p10: 40, p50: 85, p90: 150, hist: [70, 82, 95, 78, 66, 88, 102, 84, 72, 90, 98, 80] },
+      { p: '38', stock: 210, p10: 50, p50: 90, p90: 160, hist: [60, 72, 85, 66, 58, 78, 92, 70, 64, 80, 88, 74] },
+      { p: '42', stock: 95, p10: 20, p50: 45, p90: 88, hist: [38, 44, 52, 40, 33, 47, 55, 42, 36, 49, 53, 41] },
+      { p: '1', stock: 400, p10: 70, p50: 150, p90: 260, hist: [120, 145, 168, 132, 110, 155, 180, 140, 125, 160, 175, 138] }
+    ];
+    const f1 = (n) => (Math.round(n * 10) / 10).toLocaleString('en-US');
+    const st = this.state;
+    const all = base.map((r) => {
+      const kind = r.stock < r.p50 ? 'crit' : r.stock < r.p90 ? 'risk' : 'sur';
+      const gap = r.p90 - r.stock;
+      return Object.assign({}, r, {
+        kind: kind, gap: gap,
+        cover: Math.min(100, Math.round((r.stock / r.p90) * 100)),
+        color: kind === 'crit' ? '#9B2F2A' : kind === 'risk' ? '#9E8251' : '#2C6A7F',
+        tag: kind === 'crit' ? 'Critical' : kind === 'risk' ? 'At risk' : 'Surplus',
+        cls: kind === 'crit' ? 'pill p-crit' : kind === 'risk' ? 'pill p-risk' : 'pill p-sur',
+        stockS: r.stock.toLocaleString('en-US'),
+        line: gap > 0 ? 'Get ' + Math.ceil(gap) + ' units · stock ' + r.stock : 'Share ' + Math.floor(-gap) + ' units · stock ' + r.stock,
+        bg: r.p === st.sel ? '#F1F6F2' : 'transparent',
+        on: r.p === st.sel ? 'true' : 'false',
+        pick: () => this.setState({ sel: r.p })
+      });
+    });
+    const rows = st.view === 'act' ? all.filter((r) => r.gap > 0).sort((a, b) => b.gap - a.gap) : all;
+    const x = all.find((r) => r.p === st.sel) || all[0];
+    const vmax = Math.max(x.p90, x.stock, Math.max.apply(null, x.hist)) * 1.15;
+    const y = (v) => Math.round((260 - (v / vmax) * 240) * 10) / 10;
+    const X = (i) => Math.round((64 + i * 54) * 10) / 10;
+    const hist = x.hist.map((v, i) => X(i) + ',' + y(v)).join(' ');
+    const lastX = X(11), lastY = y(x.hist[11]);
+    const short = x.gap > 0;
+    let rec, cta, href;
+    if (x.network && short) { rec = 'No warehouse can spare it — buy it.'; cta = 'Draft order'; href = 'Assistant.dc.html'; }
+    else if (short) { rec = 'Nearby warehouses hold more than they need.'; cta = 'See donors'; href = 'Transfers.dc.html'; }
+    else { rec = 'The extra can go to hospitals that are short.'; cta = 'Share stock'; href = 'Transfers.dc.html'; }
+    let ai = 'April is forecast at ' + f1(x.p50) + ' units, up to ' + f1(x.p90) + ' in a busy month, against ' + x.stockS + ' in stock. ' + rec;
+    if (x.p === '39') ai += ' Actual April use was 42 — inside the range.';
+    return {
+      rows: rows,
+      vAct: { cls: st.view === 'act' ? 'on' : '', on: st.view === 'act' ? 'true' : 'false', pick: () => this.setState({ view: 'act' }) },
+      vAll: { cls: st.view === 'all' ? 'on' : '', on: st.view === 'all' ? 'true' : 'false', pick: () => this.setState({ view: 'all' }) },
+      s: {
+        p: x.p, tag: x.tag, cls: x.cls, stockS: x.stockS,
+        p10: f1(x.p10), p50: f1(x.p50), p90: f1(x.p90),
+        hist: hist, lastX: lastX, lastY: lastY,
+        cone: lastX + ',' + lastY + ' 716,' + y(x.p90) + ' 716,' + y(x.p10),
+        p90Y: y(x.p90), p10Y: y(x.p10), p50Y: y(x.p50), stockY: y(x.stock),
+        actY: x.actual ? y(x.actual) : 0, actOpacity: x.actual ? '1' : '0',
+        actNote: x.actual ? 'Actual (' + x.actual + ')' : 'Actual — after the April count',
+        p90TextY: y(x.p90) - 5, p10TextY: y(x.p10) + 14,
+        gMid: Math.round(vmax / 2).toLocaleString('en-US'), gTop: Math.round(vmax).toLocaleString('en-US'),
+        gapLabel: short ? 'Short by' : 'Extra to share',
+        gapS: f1(Math.abs(x.gap)),
+        gapBg: short ? '#F7E4E1' : '#E1EEF0', gapFg: short ? '#8A2A25' : '#1F5A66',
+        ai: ai, cta: cta, href: href,
+        alt: 'Twelve months of actual consumption for Product ' + x.p + ', then a forecast for April 2023 of ' + f1(x.p50) + ' units with a range from ' + f1(x.p10) + ' to ' + f1(x.p90) + '. Stock on hand is ' + x.stockS + '.'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+{
+  "generated_at": "2026-09-25T12:01:49.122605+00:00",
+  "period": "2023-03..2023-10",
+  "products": [
+    {
+      "productID": 46,
+      "total_deficit_before": 2169267.7635040283,
+      "total_potential_surplus_before": 1020947.5754394531,
+      "optimized_transferred": 972114.568938,
+      "remaining_unmet_demand": 1197153.1945660282,
+      "coverage_pct": 44.8130279393,
+      "name1": "Paracetamol (Acetaminophen) 250mg, Dispersible, Tab"
+    },
+    {
+      "productID": 34,
+      "total_deficit_before": 1332233.3283691406,
+      "total_potential_surplus_before": 7269444.537261963,
+      "optimized_transferred": 1331261.075338,
+      "remaining_unmet_demand": 972.2530311406,
+      "coverage_pct": 99.9270208146,
+      "name1": "Folic Acid 5mg, Tab"
+    },
+    {
+      "productID": 50,
+      "total_deficit_before": 734743.7601928711,
+      "total_potential_surplus_before": 64160.9185791016,
+      "optimized_transferred": 63924.269656,
+      "remaining_unmet_demand": 670819.4905368711,
+      "coverage_pct": 8.7002126618,
+      "name1": "Paracetamol (Acetaminophen) 500mg, Tab"
+    },
+    {
+      "productID": 44,
+      "total_deficit_before": 457154.3601989746,
+      "total_potential_surplus_before": 271278.5315170288,
+      "optimized_transferred": 268819.012458,
+      "remaining_unmet_demand": 188335.3477409746,
+      "coverage_pct": 58.8026793272,
+      "name1": "Glove, Exam, Latex, Medium, Nonsterile, Disposable, Pcs"
+    },
+    {
+      "productID": 38,
+      "total_deficit_before": 351972.5687561035,
+      "total_potential_surplus_before": 2890553.119972229,
+      "optimized_transferred": 350603.541571,
+      "remaining_unmet_demand": 1369.0271851035,
+      "coverage_pct": 99.611041511,
+      "name1": "Albendazole 400mg, Tab"
+    },
+    {
+      "productID": 39,
+      "total_deficit_before": 298319.1975021362,
+      "total_potential_surplus_before": 728516.6590976715,
+      "optimized_transferred": 295627.555739,
+      "remaining_unmet_demand": 2691.6417631362,
+      "coverage_pct": 99.0977309588,
+      "name1": "Oral Rehydration Salts (ORS), Sachet"
+    },
+    {
+      "productID": 43,
+      "total_deficit_before": 288329.8229370117,
+      "total_potential_surplus_before": 12184614.402385712,
+      "optimized_transferred": 287912.677787,
+      "remaining_unmet_demand": 417.1451500117,
+      "coverage_pct": 99.8553236201,
+      "name1": "Zinc Sulphate 20mg, Dispersible, Tab"
+    },
+    {
+      "productID": 42,
+      "total_deficit_before": 183683.2382736206,
+      "total_potential_surplus_before": 1274548.3847618103,
+      "optimized_transferred": 180262.301071,
+      "remaining_unmet_demand": 3420.9372026206,
+      "coverage_pct": 98.1375887997,
+      "name1": "Methyldopa 250mg, Tab"
+    },
+    {
+      "productID": 32,
+      "total_deficit_before": 179563.8994464874,
+      "total_potential_surplus_before": 166678.4848594666,
+      "optimized_transferred": 100922.333529,
+      "remaining_unmet_demand": 78641.5659174874,
+      "coverage_pct": 56.2041333698,
+      "name1": "Ampicillin 500mg, Pdr for IM/IV, Inj, Vial"
+    },
+    {
+      "productID": 19,
+      "total_deficit_before": 133816.2780303955,
+      "total_potential_surplus_before": 388139.3087463379,
+      "optimized_transferred": 101075.000783,
+      "remaining_unmet_demand": 32741.2772473955,
+      "coverage_pct": 75.5326648377,
+      "name1": "Ferrous Sulphate 200mg, Tab"
+    },
+    {
+      "productID": 23,
+      "total_deficit_before": 123269.4290161133,
+      "total_potential_surplus_before": 12549.0746307373,
+      "optimized_transferred": 8613.689297,
+      "remaining_unmet_demand": 114655.7397191133,
+      "coverage_pct": 6.987693028,
+      "name1": "Ciprofloxacin 500mg, Tab"
+    },
+    {
+      "productID": 1,
+      "total_deficit_before": 77089.8273086548,
+      "total_potential_surplus_before": 78181.5383300781,
+      "optimized_transferred": 52337.507834,
+      "remaining_unmet_demand": 24752.3194746548,
+      "coverage_pct": 67.8915878543,
+      "name1": "Envelope, Dispensing, Plastic, 10cm x 7cm, Pcs"
+    },
+    {
+      "productID": 35,
+      "total_deficit_before": 56307.8179140091,
+      "total_potential_surplus_before": 218296.1487278938,
+      "optimized_transferred": 45733.974549,
+      "remaining_unmet_demand": 10573.8433650091,
+      "coverage_pct": 81.221358318,
+      "name1": "Oxytocin 10IU, Inj, Amp"
+    },
+    {
+      "productID": 33,
+      "total_deficit_before": 40855.2596092224,
+      "total_potential_surplus_before": 86980.6161270142,
+      "optimized_transferred": 30219.559337,
+      "remaining_unmet_demand": 10635.7002722224,
+      "coverage_pct": 73.9673658326,
+      "name1": "Cannula, IV, 24G, Short, Sterile, Disposable, Pcs"
+    },
+    {
+      "productID": 51,
+      "total_deficit_before": 38298.0524148941,
+      "total_potential_surplus_before": 237124.067990303,
+      "optimized_transferred": 32512.942504,
+      "remaining_unmet_demand": 5785.1099108941,
+      "coverage_pct": 84.8945062579,
+      "name1": "IV Giving Set, Pcs"
+    },
+    {
+      "productID": 52,
+      "total_deficit_before": 33752.8759536743,
+      "total_potential_surplus_before": 1890.4768538475,
+      "optimized_transferred": 793.097491,
+      "remaining_unmet_demand": 32959.7784626743,
+      "coverage_pct": 2.3497182643,
+      "name1": "Povidone Iodine 10%, Solution, Bot"
+    },
+    {
+      "productID": 17,
+      "total_deficit_before": 27257.0863037109,
+      "total_potential_surplus_before": 257207.0297241211,
+      "optimized_transferred": 27222.913881,
+      "remaining_unmet_demand": 34.17243921,
+      "coverage_pct": 99.8746292163,
+      "name1": "Metoclopramide HCl 10mg, Tab"
+    },
+    {
+      "productID": 4,
+      "total_deficit_before": 22543.2240142822,
+      "total_potential_surplus_before": 66474.6006774902,
+      "optimized_transferred": 19869.545601,
+      "remaining_unmet_demand": 2673.6784132822,
+      "coverage_pct": 88.1397691316,
+      "name1": "Syringe, Luer, 2ml, Disposable, Pcs"
+    },
+    {
+      "productID": 47,
+      "total_deficit_before": 19676.0583434105,
+      "total_potential_surplus_before": 16605.2428560257,
+      "optimized_transferred": 3967.64133,
+      "remaining_unmet_demand": 15708.4170134105,
+      "coverage_pct": 20.1648178754,
+      "name1": "Chlorhexidine Gluconate 7.1%, Gel"
+    },
+    {
+      "productID": 15,
+      "total_deficit_before": 17823.2475776672,
+      "total_potential_surplus_before": 3696.1419410706,
+      "optimized_transferred": 2458.722747,
+      "remaining_unmet_demand": 15364.5248306672,
+      "coverage_pct": 13.7950322257,
+      "name1": "Ceftriaxone 250mg, Pdr for Inj"
+    },
+    {
+      "productID": 20,
+      "total_deficit_before": 17719.3691606522,
+      "total_potential_surplus_before": 47146.1818675995,
+      "optimized_transferred": 14845.367438,
+      "remaining_unmet_demand": 2874.0017226522,
+      "coverage_pct": 83.7804512305,
+      "name1": "Water for Injection 10ml, Inj, Amp"
+    },
+    {
+      "productID": 3,
+      "total_deficit_before": 17409.8777256012,
+      "total_potential_surplus_before": 89359.6766452789,
+      "optimized_transferred": 15890.042668,
+      "remaining_unmet_demand": 1519.8350576012,
+      "coverage_pct": 91.2702715001,
+      "name1": "Syringe, Luer, 10ml, Disposable, Pcs"
+    },
+    {
+      "productID": 56,
+      "total_deficit_before": 16671.1595258713,
+      "total_potential_surplus_before": 8330.9615097046,
+      "optimized_transferred": 5057.703573,
+      "remaining_unmet_demand": 11613.4559528713,
+      "coverage_pct": 30.3380431646,
+      "name1": "Glucose (Dextrose) 5%, IV Inj, 500ml, Soft Bag"
+    },
+    {
+      "productID": 16,
+      "total_deficit_before": 16607.9257507324,
+      "total_potential_surplus_before": 11209.0815124512,
+      "optimized_transferred": 9952.495841,
+      "remaining_unmet_demand": 6655.4299097324,
+      "coverage_pct": 59.9261821758,
+      "name1": "Aluminium Hydroxide 500mg, Tab"
+    },
+    {
+      "productID": 24,
+      "total_deficit_before": 15228.3218040466,
+      "total_potential_surplus_before": 6910.4949645996,
+      "optimized_transferred": 6015.038494,
+      "remaining_unmet_demand": 9213.2833109304,
+      "coverage_pct": 39.4990240645,
+      "name1": "Erythromycin 125mg/5ml, Pdr for Susp, 100ml, Bot"
+    },
+    {
+      "productID": 2,
+      "total_deficit_before": 14589.416633606,
+      "total_potential_surplus_before": 114578.8517360687,
+      "optimized_transferred": 13764.191163,
+      "remaining_unmet_demand": 825.225470606,
+      "coverage_pct": 94.3436705433,
+      "name1": "Syringe, Luer, 20ml, Disposable, Pcs"
+    },
+    {
+      "productID": 54,
+      "total_deficit_before": 13827.7764263153,
+      "total_potential_surplus_before": 72347.4791793823,
+      "optimized_transferred": 12142.814637,
+      "remaining_unmet_demand": 1684.9617893153,
+      "coverage_pct": 87.8146584283,
+      "name1": "Misoprostol 200mcg, Tab"
+    },
+    {
+      "productID": 7,
+      "total_deficit_before": 8782.6258687973,
+      "total_potential_surplus_before": 4499.7457427979,
+      "optimized_transferred": 2546.397861,
+      "remaining_unmet_demand": 6236.2280077973,
+      "coverage_pct": 28.9935823185,
+      "name1": "Rapid test kit, Pregnancy, Pcs"
+    },
+    {
+      "productID": 6,
+      "total_deficit_before": 8687.2931032181,
+      "total_potential_surplus_before": 58636.3741531372,
+      "optimized_transferred": 6774.371576,
+      "remaining_unmet_demand": 1912.9215272181,
+      "coverage_pct": 77.9802349882,
+      "name1": "Cannula, IV, 18G, Short, Sterile, Disposable, Pcs"
+    },
+    {
+      "productID": 5,
+      "total_deficit_before": 8317.0056600571,
+      "total_potential_surplus_before": 112068.9690952301,
+      "optimized_transferred": 7286.730005,
+      "remaining_unmet_demand": 1030.2756550571,
+      "coverage_pct": 87.612420898,
+      "name1": "Apron, Plastic, Disposable, Pcs"
+    },
+    {
+      "productID": 22,
+      "total_deficit_before": 6295.0450229645,
+      "total_potential_surplus_before": 1770.3464865685,
+      "optimized_transferred": 165.25215,
+      "remaining_unmet_demand": 6129.7928729645,
+      "coverage_pct": 2.6251146639,
+      "name1": "Salbutamol 100mcg/dose, Aerosol, Inhaler"
+    },
+    {
+      "productID": 21,
+      "total_deficit_before": 5154.7474131584,
+      "total_potential_surplus_before": 764.2773513794,
+      "optimized_transferred": 198.00483,
+      "remaining_unmet_demand": 4956.7425831584,
+      "coverage_pct": 3.8412130436,
+      "name1": "Neomycin & Bacitracin 0.5% & 500IU/g, Ointment, 15g, Tube"
+    },
+    {
+      "productID": 28,
+      "total_deficit_before": 5109.8260903358,
+      "total_potential_surplus_before": 927.9942960739,
+      "optimized_transferred": 673.71387,
+      "remaining_unmet_demand": 4436.1122203358,
+      "coverage_pct": 13.1846731785,
+      "name1": "Benzyl Benzoate 25%, Emulsion, 100ml, Bot"
+    },
+    {
+      "productID": 18,
+      "total_deficit_before": 5081.3239555359,
+      "total_potential_surplus_before": 32008.6990356445,
+      "optimized_transferred": 4875.368634,
+      "remaining_unmet_demand": 205.9553215359,
+      "coverage_pct": 95.9468177322,
+      "name1": "Prednisolone 5mg, Tab"
+    },
+    {
+      "productID": 9,
+      "total_deficit_before": 4110.9562034607,
+      "total_potential_surplus_before": 44414.5634059906,
+      "optimized_transferred": 3691.958393,
+      "remaining_unmet_demand": 418.9978104607,
+      "coverage_pct": 89.8077773218,
+      "name1": "Mask, Surgical, Pcs"
+    },
+    {
+      "productID": 29,
+      "total_deficit_before": 1092.448237896,
+      "total_potential_surplus_before": 2444.3699274063,
+      "optimized_transferred": 407.260598,
+      "remaining_unmet_demand": 685.187639896,
+      "coverage_pct": 37.2796242305,
+      "name1": "Glucose (Dextrose) Hypertonic 50%, IV Inj, 50ml, Bot"
+    }
+  ]
+}

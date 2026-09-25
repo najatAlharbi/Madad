@@ -1,0 +1,4 @@
+facility_id,product_name,month,received,consumption,closing_balance,facility_type,district
+424242,"Folic Acid 5mg, Tab",2023-11,0,40,60,CHC,Bo
+424242,"Paracetamol (Acetaminophen) 500mg, Tab",2023-11,0,120,180,CHC,Bo
+424242,"Oral Rehydration Salts (ORS), Sachet",2023-11,0,25,40,CHC,Bo

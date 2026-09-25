@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — Get and share stock</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+.drow{display:grid;grid-template-columns:minmax(0,1fr) 90px 80px 90px 120px;column-gap:12px;align-items:center;padding:10px 0;border-top:1px solid #EEF1EC;font-size:14px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<aside class="side">
+<a class="brand" href="Main.dc.html" aria-label="Madad home"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div class="ws">Workspace / Warehouse</div>
+<nav aria-label="Warehouse" style="display: flex; flex-direction: column; gap: 4px;">
+<a class="nav" href="WarehouseHome.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>My Warehouse</a>
+<a class="nav" href="Forecasts.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M10 16V9"></path><path d="M14 16v-6"></path><path d="M18 16V6"></path></svg>Forecasted Needs</a>
+<a class="nav on" href="Transfers.dc.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg>Get &amp; Share Stock</a>
+<a class="nav" href="Upload.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Upload Data</a>
+<a class="nav" href="Assistant.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M8.5 11h.01"></path><path d="M12 11h.01"></path><path d="M15.5 11h.01"></path></svg>Ask Madad</a>
+</nav>
+<div class="care"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg><div style="font-size: 17px; font-weight: 700; line-height: 1.3; color: #16362B;">Connected supplies.<br>Better care.</div><div class="small muted">Facility 780 · Kambia · MCHP</div><div style="display: flex; gap: 14px; font-size: 12px; font-weight: 600; margin-top: 2px;"><a href="Main.dc.html">Switch workspace</a><a href="Model.dc.html">How it works</a></div></div>
+</aside>
+<main class="main">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+<div>
+<div class="crumb">Madad / Warehouse operations</div>
+<h1 class="h1">Get &amp; Share Stock</h1>
+<p class="sub">Where to get what you are short on, and who needs what you have extra.</p>
+</div>
+<div style="display: flex; gap: 12px; align-items: center;"><span class="demo">Sample donors and distances</span><div style="display: flex; gap: 10px; align-items: center;"><span class="portal">Hospital Portal</span><span class="av" role="img" aria-label="Warehouse manager">WM</span></div></div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="seg" role="tablist" aria-label="Transfer views">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><button role="tab" class="{{ t.cls }}" aria-selected="{{ t.on }}" onClick="{{ t.pick }}">{{ t.label }}</button></sc-for>
+</div>
+<span class="small muted">Suggestions come from the network transfer plan: cover the most shortage first, then the shortest trips.</span>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 16px; flex-grow: 1; min-height: 0;">
+<div style="display: flex; flex-direction: column; gap: 14px; min-height: 0;">
+
+<sc-if value="{{ isGet }}" hint-placeholder-val="{{ true }}">
+<sc-for list="{{ needs }}" as="n" hint-placeholder-count="3">
+<section class="card" style="padding: 16px 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 12px;"><span class="{{ n.cls }}">{{ n.tag }}</span><span style="font-size: 16px; font-weight: 700;">Product {{ n.p }}</span><span class="small muted">You need {{ n.need }} units</span></div>
+<span class="small" style="font-weight: 600; color: #055444;">{{ n.cover }}</span>
+</div>
+<div class="drow" style="border-top: 0; padding-top: 12px; font-size: 12px; font-weight: 600; color: #5F6F68;"><span>From warehouse</span><span style="text-align: right;">Their extra</span><span style="text-align: right;">Distance</span><span style="text-align: right;">Suggested</span><span></span></div>
+<sc-for list="{{ n.donors }}" as="d" hint-placeholder-count="2">
+<div class="drow">
+<span><strong>Facility {{ d.id }}</strong> <span class="muted">· {{ d.district }}</span></span>
+<span class="num" style="text-align: right;">{{ d.extra }}</span>
+<span class="num" style="text-align: right;">{{ d.km }} km</span>
+<span class="num" style="text-align: right; font-weight: 700;">{{ d.qty }}</span>
+<button class="{{ d.btnCls }}" onClick="{{ d.pick }}" style="justify-self: end;">{{ d.btn }}</button>
+</div>
+</sc-for>
+</section>
+</sc-for>
+<section style="display: flex; gap: 14px; align-items: center; padding: 14px 18px; border-radius: 16px; background: #FBF7F2; border: 1px solid #EFE4D6;">
+<span class="pill p-crit">Critical</span>
+<div style="flex-grow: 1; font-size: 14px; line-height: 1.5;"><strong>Product 50: no donor available.</strong> <span class="muted">It is short across the network — transfers cover only 15.5% of the national shortage. Order 75 units from the central store.</span></div>
+<a class="btn btn-sm" href="Assistant.dc.html">Draft order</a>
+</section>
+</sc-if>
+
+<sc-if value="{{ isEm }}" hint-placeholder-val="{{ false }}">
+<section class="card" aria-labelledby="emTitle" style="display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div><h2 class="h2" id="emTitle">Emergency supply request</h2><div class="small muted" style="margin-top: 4px;">Search other hospital warehouses by available quantity and distance.</div></div>
+<span class="pill p-crit"><span style="width: 6px; height: 6px; border-radius: 50%; background: #8A2A25;"></span>Priority workflow</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="sup" class="fl">Medical supply</label><select id="sup" class="select"><option>Product 46</option><option>Product 39</option><option>Product 34</option><option>Product 50</option></select></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="qty" class="fl">Required quantity</label><input id="qty" class="input" value="70"></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="urg" class="fl">Urgency</label><select id="urg" class="select"><option>Critical — within 48 hours</option><option>High — this week</option><option>Normal — this month</option></select></div>
+</div>
+<button class="btn btn-pri" style="height: 52px; font-size: 15px;" onClick="{{ search }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Find nearest hospital warehouse</button>
+</section>
+<section class="card" aria-labelledby="mTitle" style="display: flex; flex-direction: column;">
+<h2 class="h2" id="mTitle" style="margin-bottom: 6px;">Matching hospital warehouses</h2>
+<sc-if value="{{ notSearched }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 30px 0; text-align: center;"><span style="width: 52px; height: 52px; border-radius: 14px; background: #EEF3EC; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #5F6F68;">—</span><div style="font-size: 15px; font-weight: 700;">Complete the request</div><div class="small muted">Pick a supply and quantity to see warehouses that can send it, nearest first.</div></div>
+</sc-if>
+<sc-if value="{{ searched }}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
+<div class="drow"><span><strong>{{ m.rank }}. Facility {{ m.id }}</strong> <span class="muted">· {{ m.district }}</span></span><span class="num" style="text-align: right;">{{ m.extra }}</span><span class="num" style="text-align: right;">{{ m.km }} km</span><span style="text-align: right;"><span class="{{ m.fitCls }}">{{ m.fit }}</span></span><button class="btn btn-sm btn-red" style="justify-self: end;">Send request</button></div>
+</sc-for>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{ isShare }}" hint-placeholder-val="{{ false }}">
+<section class="card" aria-labelledby="shTitle">
+<h2 class="h2" id="shTitle">Requests for your extra stock</h2>
+<div class="small muted" style="margin-top: 4px;">You only see requests for supplies where you hold more than a busy month needs.</div>
+<sc-for list="{{ asks }}" as="a" hint-placeholder-count="2">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 14px; align-items: center; padding: 16px 0; border-top: 1px solid #EEF1EC; margin-top: 12px;">
+<div><div style="font-size: 15px; font-weight: 700;">Facility {{ a.id }} asks for {{ a.qty }} units of Product {{ a.p }}</div><div class="small muted" style="margin-top: 4px;">{{ a.detail }}</div></div>
+<div style="display: flex; gap: 8px; justify-content: flex-end; align-items: center;"><sc-if value="{{ a.open }}" hint-placeholder-val="{{ true }}"><button class="btn btn-sm btn-pri" onClick="{{ a.yes }}">Accept</button><button class="btn btn-sm" onClick="{{ a.no }}">Decline</button></sc-if><sc-if value="{{ a.done }}" hint-placeholder-val="{{ false }}"><span class="{{ a.resCls }}">{{ a.res }}</span></sc-if></div>
+</div>
+</sc-for>
+</section>
+</sc-if>
+</div>
+
+<aside style="display: flex; flex-direction: column; gap: 14px; min-height: 0;">
+<section class="ai" aria-labelledby="draftTitle" style="display: flex; flex-direction: column; gap: 10px;">
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Draft request</span>
+<h2 id="draftTitle" class="h2">To Facility {{ draft.id }}</h2>
+<p style="font-size: 13.5px; line-height: 1.6; margin: 0; color: #3E4F48; white-space: pre-line;">{{ draft.text }}</p>
+<div style="display: flex; gap: 8px;"><button class="btn btn-sm">Edit</button><button class="btn btn-sm">Arabic</button><button class="btn btn-sm">Copy</button></div>
+</section>
+<section class="card" aria-labelledby="sentTitle" style="flex-grow: 1;">
+<h2 class="h2" id="sentTitle">Your requests</h2>
+<div class="kv" style="font-size: 26px;">{{ sentCount }}</div>
+<div class="small muted" style="margin-top: 4px;">sent this month · donors confirm in their own workspace</div>
+<div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #EEF1EC; font-size: 13px; line-height: 1.55; color: #3E4F48;">Madad suggests; people decide. A transfer only moves when the donor accepts it.</div>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'get', sent: {}, last: '760|39', searched: false, answers: {} };
+  }
+  renderVals() {
+    const st = this.state;
+    const needsDef = [
+      { p: '39', need: 46, tag: 'Critical', cls: 'pill p-crit', cover: 'Fully covered by 2 donors', donors: [
+        { id: '1245', district: 'Kambia', extra: 20, km: '6.1', qty: 20 },
+        { id: '760', district: 'Bombali', extra: 35, km: '38.2', qty: 26 } ] },
+      { p: '46', need: 70, tag: 'Critical', cls: 'pill p-crit', cover: 'Fully covered', donors: [
+        { id: '1102', district: 'Kambia', extra: 180, km: '8.4', qty: 70 } ] },
+      { p: '34', need: 30, tag: 'At risk', cls: 'pill p-risk', cover: 'Fully covered', donors: [
+        { id: '801', district: 'Kambia', extra: 4170, km: '11.3', qty: 30 } ] }
+    ];
+    const needs = needsDef.map((n) => Object.assign({}, n, {
+      donors: n.donors.map((d) => {
+        const key = d.id + '|' + n.p;
+        const sent = !!st.sent[key];
+        return Object.assign({}, d, {
+          extra: d.extra.toLocaleString('en-US'),
+          btn: sent ? 'Requested ✓' : 'Request',
+          btnCls: sent ? 'btn btn-sm' : 'btn btn-sm btn-pri',
+          pick: () => { const s = Object.assign({}, st.sent); s[key] = { qty: d.qty, km: d.km, p: n.p }; this.setState({ sent: s, last: key }); }
+        });
+      })
+    }));
+    const lookup = {};
+    needsDef.forEach((n) => n.donors.forEach((d) => { lookup[d.id + '|' + n.p] = { id: d.id, qty: d.qty, km: d.km, p: n.p, need: n.need }; }));
+    const L = lookup[st.last] || lookup['760|39'];
+    const draft = {
+      id: L.id,
+      text: 'Hello,\n\nFacility 780 (Kambia) is forecast to run short of Product ' + L.p + ' in April. Could you send ' + L.qty + ' units? Madad shows you hold more than your own busy-month forecast. We are ' + L.km + ' km away and can collect by [DATE].\n\nThank you,\nWarehouse manager, Facility 780'
+    };
+    const matches = [
+      { rank: 1, id: '1102', district: 'Kambia', extra: '180', km: '8.4', fit: 'Covers all', fitCls: 'pill p-ok' },
+      { rank: 2, id: '1110', district: 'Kambia', extra: '65', km: '14.9', fit: 'Covers 65', fitCls: 'pill p-risk' },
+      { rank: 3, id: '998', district: 'Port Loko', extra: '240', km: '27.3', fit: 'Covers all', fitCls: 'pill p-ok' }
+    ];
+    const asksDef = [
+      { k: 'a1', id: '1245', qty: 90, p: '1', detail: 'You hold 140 units above your busy-month forecast · 6.1 km away' },
+      { k: 'a2', id: '1310', qty: 20, p: '38', detail: 'You hold 50 units above your busy-month forecast · 12.7 km away' }
+    ];
+    const asks = asksDef.map((a) => {
+      const r = st.answers[a.k];
+      const set = (v) => () => { const x = Object.assign({}, st.answers); x[a.k] = v; this.setState({ answers: x }); };
+      return Object.assign({}, a, { open: !r, done: !!r, res: r === 'yes' ? 'Accepted' : 'Declined', resCls: r === 'yes' ? 'pill p-ok' : 'pill p-neu', yes: set('yes'), no: set('no') });
+    });
+    const tabs = [['get', 'What you need'], ['em', 'Emergency request'], ['share', 'Requests to you']].map((t) => ({ label: t[1], cls: st.tab === t[0] ? 'on' : '', on: st.tab === t[0] ? 'true' : 'false', pick: () => this.setState({ tab: t[0] }) }));
+    return {
+      tabs: tabs, isGet: st.tab === 'get', isEm: st.tab === 'em', isShare: st.tab === 'share',
+      needs: needs, draft: draft, sentCount: String(Object.keys(st.sent).length),
+      searched: st.searched, notSearched: !st.searched, search: () => this.setState({ searched: true }), matches: matches,
+      asks: asks
+    };
+  }
+}
+</script>
+</body>
+</html>
