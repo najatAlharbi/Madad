@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Medicine name lookup and patient dispensing interface">
+  <title>Hospital Pharmacist | Madad</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="madad-is-loading">
+  <div class="madad-splash" id="madad-splash" role="status" aria-label="Opening Madad">
+    <div class="madad-splash-inner">
+      <img class="madad-splash-logo" src="../assets/image.png" alt="Madad for Medical Logistics">
+      <div class="madad-splash-progress" aria-hidden="true"></div>
+    </div>
+  </div>
+  <script src="../assets/splash.js"></script>
+
+  <div id="madad-interfaces">
+    <div class="madad-product-window">
+      <section class="madad-screen" id="madad-pharmacist">
+        <aside class="madad-sidebar" aria-label="Hospital Pharmacist navigation">
+          <div class="madad-brand">
+            <div class="madad-brand-mark">
+              <img class="madad-brand-logo" src="../assets/madad-logo.png" alt="">
+            </div>
+            <div><div class="madad-brand-name">MADAD</div><div class="madad-brand-sub">Medical Logistics</div></div>
+          </div>
+          <div class="madad-side-role">Hospital Pharmacist</div>
+          <nav class="madad-side-nav">
+            <button class="madad-side-item is-active" type="button" data-pharmacist-view="search"><i data-lucide="search" aria-hidden="true"></i> Medicine Search</button>
+            <button class="madad-side-item" type="button" data-pharmacist-view="dispensing"><i data-lucide="clipboard-plus" aria-hidden="true"></i> Dispensing Record</button>
+            <button class="madad-side-item" type="button" data-pharmacist-view="history"><i data-lucide="history" aria-hidden="true"></i> Patient History</button>
+            <button class="madad-side-item" type="button" data-pharmacist-view="catalog"><i data-lucide="book-open" aria-hidden="true"></i> Medicine Catalog</button>
+          </nav>
+          <div class="madad-side-foot">Hospital pharmacy only · No warehouse or authority access</div>
+        </aside>
+
+        <main class="madad-main">
+          <header class="madad-topbar">
+            <div class="madad-title"><h1 id="madad-pharmacist-title">Medicine Search</h1></div>
+            <div class="madad-top-actions"><span class="madad-demo-label" id="madad-pharmacist-data-badge">Pharmacist Portal</span><div class="madad-avatar" aria-label="Pharmacist">PH</div></div>
+          </header>
+
+          <div class="madad-sr-only" id="madad-pharmacist-feedback" aria-live="polite"></div>
+
+          <section class="madad-panel" data-pharmacist-panel="search">
+            <div class="madad-search-row">
+              <div class="madad-search-box"><span class="madad-search-icon"><i data-lucide="search" aria-hidden="true"></i></span><label class="madad-sr-only" for="madad-medicine-search">Search medicine by name</label><input class="madad-input" id="madad-medicine-search" placeholder="Enter medicine name"></div>
+              <button class="madad-primary-button" id="madad-medicine-button" type="button">Search Medicine</button>
+            </div>
+
+            <article class="madad-medicine-result" aria-live="polite">
+              <div class="madad-medicine-visual">
+                <img class="madad-medicine-image" id="madad-medicine-image" alt="" hidden>
+                <div class="madad-image-placeholder" id="madad-image-placeholder">
+                  <i data-lucide="image-off" aria-hidden="true"></i>
+                  <strong>Medicine image</strong>
+                  <span>Appears with the selected medicine</span>
+                </div>
+              </div>
+              <div class="madad-medicine-content">
+                <div class="madad-medicine-title-row"><div><div class="madad-medicine-name" id="madad-medicine-name">No medicine selected</div><div class="madad-medicine-sub" id="madad-medicine-sub">Search by medicine name</div></div><span class="madad-status status-info" id="madad-catalog-status">Ready</span></div>
+                <p class="madad-description" id="madad-medicine-description">The selected medicine image and verified description will appear here.</p>
+                <div class="madad-details-grid">
+                  <div class="madad-detail"><span>Category</span><strong id="madad-medicine-label">—</strong></div>
+                  <div class="madad-detail"><span>Strength</span><strong id="madad-medicine-strength">—</strong></div>
+                  <div class="madad-detail"><span>Dosage form</span><strong id="madad-medicine-form">—</strong></div>
+                  <div class="madad-detail"><span>Medicine ID</span><strong id="madad-medicine-id">—</strong></div>
+                </div>
+                <button class="madad-primary-button madad-full-button" id="madad-continue-dispensing" type="button" style="margin-top:14px" disabled>Continue to Dispensing</button>
+                <div class="madad-notice">The pharmacist must verify the selected medicine and prescription before dispensing.</div>
+              </div>
+            </article>
+          </section>
+
+          <section class="madad-panel madad-form-box" data-pharmacist-panel="dispensing" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Patient dispensing details</div><div class="madad-section-caption" id="madad-selected-medicine-caption">Select a medicine first</div></div><i data-lucide="clipboard-plus" aria-hidden="true"></i></div>
+            <form id="madad-dispensing-form">
+              <div class="madad-fields">
+                <div class="madad-field"><label for="madad-patient-name">Patient name</label><input class="madad-input" id="madad-patient-name" required placeholder="Full name"></div>
+                <div class="madad-field"><label for="madad-patient-id">Patient ID</label><input class="madad-input" id="madad-patient-id" required placeholder="Medical record ID"></div>
+                <div class="madad-field"><label for="madad-prescription">Prescription number</label><input class="madad-input" id="madad-prescription" required placeholder="RX-000000"></div>
+                <div class="madad-field"><label for="madad-dispense-quantity">Quantity</label><input class="madad-input" id="madad-dispense-quantity" type="number" min="1" step="1" placeholder="Enter quantity" required></div>
+                <div class="madad-field is-wide"><label for="madad-instructions">Dosage instructions</label><input class="madad-input" id="madad-instructions" required placeholder="Enter prescription instructions"></div>
+                <div class="madad-field is-wide"><label for="madad-notes">Pharmacist notes</label><textarea class="madad-textarea" id="madad-notes" placeholder="Optional notes"></textarea></div>
+              </div>
+              <button class="madad-primary-button madad-full-button" type="submit" style="margin-top:13px"><i data-lucide="check" aria-hidden="true"></i> Confirm Session Record</button>
+              <div class="madad-feedback" id="madad-dispensing-feedback" aria-live="polite"></div>
+            </form>
+          </section>
+
+          <section class="madad-panel madad-section" data-pharmacist-panel="history" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Patient dispensing history</div><div class="madad-section-caption">Records created in this browser session only</div></div></div>
+            <div class="madad-table-wrap">
+              <table class="madad-table">
+                <thead><tr><th>Patient ID</th><th>Patient name</th><th>Medicine</th><th class="madad-number">Quantity</th><th>Prescription</th></tr></thead>
+                <tbody id="madad-patient-history-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="madad-panel madad-section" data-pharmacist-panel="catalog" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Medicine catalog</div><div class="madad-section-caption">Medicine information available to the pharmacist</div></div></div>
+            <div class="madad-metrics madad-metrics-compact">
+              <div class="madad-metric"><div class="madad-metric-head"><span>Available medicines</span><i data-lucide="pill" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-catalog-count">0</div><div class="madad-metric-note">Searchable by medicine name</div></div>
+              <div class="madad-metric"><div class="madad-metric-head"><span>Medicine details</span><i data-lucide="list-checks" aria-hidden="true"></i></div><div class="madad-metric-value">4</div><div class="madad-metric-note">Image, description, strength and dosage form</div></div>
+            </div>
+            <div class="madad-empty-state" id="madad-catalog-message"><strong>Medicine-name search</strong><span>Enter the medicine name to display its image and verified description.</span></div>
+          </section>
+        </main>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="../data/medicine-catalog.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+
+window.MADAD_MEDICINE_CATALOG = [];

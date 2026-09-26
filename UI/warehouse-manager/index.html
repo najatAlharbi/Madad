@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hospital warehouse inventory and emergency supply matching">
+  <title>Hospital Warehouse Manager | Madad</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="madad-is-loading">
+  <div class="madad-splash" id="madad-splash" role="status" aria-label="Opening Madad">
+    <div class="madad-splash-inner">
+      <img class="madad-splash-logo" src="../assets/image.png" alt="Madad for Medical Logistics">
+      <div class="madad-splash-progress" aria-hidden="true"></div>
+    </div>
+  </div>
+  <script src="../assets/splash.js"></script>
+
+  <div id="madad-interfaces">
+    <div class="madad-product-window">
+      <section class="madad-screen" id="madad-warehouse">
+        <aside class="madad-sidebar" aria-label="Warehouse Manager navigation">
+          <div class="madad-brand">
+            <div class="madad-brand-mark">
+              <img class="madad-brand-logo" src="../assets/madad-logo.png" alt="">
+            </div>
+            <div><div class="madad-brand-name">MADAD</div><div class="madad-brand-sub">Medical Logistics</div></div>
+          </div>
+          <div class="madad-side-role">Warehouse Manager</div>
+          <nav class="madad-side-nav">
+            <button class="madad-side-item is-active" type="button" data-warehouse-view="overview"><i data-lucide="layout-dashboard" aria-hidden="true"></i> My Hospital Warehouse</button>
+            <button class="madad-side-item" type="button" data-warehouse-view="inventory"><i data-lucide="boxes" aria-hidden="true"></i> My Inventory</button>
+            <button class="madad-side-item" type="button" data-warehouse-view="emergency"><i data-lucide="siren" aria-hidden="true"></i> Emergency Matching</button>
+            <button class="madad-side-item" type="button" data-warehouse-view="transfers"><i data-lucide="route" aria-hidden="true"></i> Transfers</button>
+            <button class="madad-side-item" type="button" data-warehouse-view="forecasts"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i> Forecasted Needs</button>
+          </nav>
+          <div class="madad-side-foot" id="madad-warehouse-role-scope">Hospital HF-638 · Main warehouse only</div>
+        </aside>
+
+        <main class="madad-main">
+          <header class="madad-topbar">
+            <div class="madad-title"><h1 id="madad-warehouse-title">My Hospital Warehouse</h1></div>
+            <div class="madad-top-actions"><span class="madad-demo-label" id="madad-warehouse-data-badge">Hospital Portal</span><div class="madad-avatar" aria-label="Warehouse manager">WM</div></div>
+          </header>
+
+          <div class="madad-sr-only" id="madad-warehouse-feedback" aria-live="polite"></div>
+
+          <section class="madad-panel" data-warehouse-panel="overview">
+            <div class="madad-emergency-banner">
+              <div class="madad-emergency-copy"><div class="madad-emergency-icon"><i data-lucide="siren" aria-hidden="true"></i></div><div><strong>Need a critical medical supply?</strong><span>Search other hospital warehouses for available stock.</span></div></div>
+              <button class="madad-danger-button" id="madad-focus-request" type="button"><i data-lucide="plus" aria-hidden="true"></i> Emergency Supply Request</button>
+            </div>
+
+            <div class="madad-metrics">
+              <div class="madad-metric"><div class="madad-metric-head"><span>Available supplies</span><i data-lucide="package-check" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-warehouse-available">—</div><div class="madad-metric-note">Positive latest closing balance</div></div>
+              <div class="madad-metric"><div class="madad-metric-head"><span>Need signals</span><i data-lucide="package-x" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-warehouse-needs">—</div><div class="madad-metric-note">Stockout flag or zero closing balance</div></div>
+              <div class="madad-metric"><div class="madad-metric-head"><span>Total available quantity</span><i data-lucide="boxes" aria-hidden="true"></i></div><div class="madad-metric-value" id="madad-warehouse-total">—</div><div class="madad-metric-note">Across the latest product records</div></div>
+              <div class="madad-metric"><div class="madad-metric-head"><span>Forecasted needs</span><i data-lucide="trending-up" aria-hidden="true"></i></div><div class="madad-metric-value madad-metric-value-small" id="madad-warehouse-forecast-status">Planned</div><div class="madad-metric-note">Future supply requirements</div></div>
+            </div>
+
+            <div class="madad-grid-2">
+              <section class="madad-section">
+                <div class="madad-section-head"><div><div class="madad-section-title">Latest need signals</div><div class="madad-section-caption" id="madad-warehouse-overview-caption">Signed-in hospital only</div></div><button class="madad-link-button" id="madad-full-inventory" type="button">Open inventory</button></div>
+                <div class="madad-table-wrap">
+                  <table class="madad-table">
+                    <thead><tr><th>Medical supply</th><th class="madad-number">Available</th><th>Signal</th><th>Record date</th></tr></thead>
+                    <tbody id="madad-warehouse-needs-body"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="madad-section">
+                <div class="madad-section-head"><div><div class="madad-section-title">Warehouse overview</div><div class="madad-section-caption">Information available to this role</div></div></div>
+                <div class="madad-risk-list" id="madad-warehouse-scope"></div>
+              </section>
+            </div>
+          </section>
+
+          <section class="madad-panel madad-section" data-warehouse-panel="inventory" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">My warehouse inventory</div><div class="madad-section-caption" id="madad-inventory-caption">Latest inventory records for the signed-in hospital</div></div></div>
+            <div class="madad-toolbar">
+              <label class="madad-sr-only" for="madad-inventory-search">Search inventory</label>
+              <input class="madad-input" id="madad-inventory-search" type="search" placeholder="Search medical supply">
+              <label class="madad-sr-only" for="madad-inventory-status">Filter status</label>
+              <select class="madad-select" id="madad-inventory-status">
+                <option value="">All statuses</option>
+                <option value="good">Available</option>
+                <option value="warn">Zero closing balance</option>
+                <option value="risk">Stockout reported</option>
+              </select>
+            </div>
+            <div class="madad-table-wrap">
+              <table class="madad-table">
+                <thead><tr><th>Medical supply</th><th class="madad-number">Available</th><th class="madad-number">Last consumption</th><th class="madad-number">Last received</th><th>Record date</th><th>Status</th></tr></thead>
+                <tbody id="madad-inventory-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="madad-panel madad-request-box" data-warehouse-panel="emergency" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Emergency supply request</div><div class="madad-section-caption">Search other hospital warehouses by available quantity and distance</div></div><span class="madad-status status-risk">Priority workflow</span></div>
+            <div class="madad-fields">
+              <div class="madad-field is-wide"><label for="madad-supply-select">Medical supply</label><select class="madad-select" id="madad-supply-select"><option value="">Select a medical supply</option></select></div>
+              <div class="madad-field"><label for="madad-request-qty">Required quantity</label><input class="madad-input" id="madad-request-qty" type="number" min="1" step="1" placeholder="Enter quantity"></div>
+              <div class="madad-field"><label for="madad-priority">Urgency</label><select class="madad-select" id="madad-priority"><option>Critical</option><option>High</option><option>Routine</option></select></div>
+            </div>
+            <button class="madad-primary-button madad-full-button" id="madad-find-suppliers" type="button" style="margin-top:12px"><i data-lucide="map-pin" aria-hidden="true"></i> Find Nearest Hospital Warehouse</button>
+            <div class="madad-divider"></div>
+            <div class="madad-section-title" style="margin-bottom:10px">Matching hospital warehouses</div>
+            <div class="madad-supplier-list" id="madad-supplier-results" aria-live="polite">
+              <div class="madad-empty-state"><strong>Complete the request</strong><span>Select a medical supply and quantity to search nearby hospital warehouses.</span></div>
+            </div>
+          </section>
+
+          <section class="madad-panel madad-section" data-warehouse-panel="transfers" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Transfer requests</div><div class="madad-section-caption">Requests created during this browser session</div></div></div>
+            <div class="madad-table-wrap">
+              <table class="madad-table">
+                <thead><tr><th>Supplying hospital</th><th>Medical supply</th><th class="madad-number">Quantity</th><th>Urgency</th><th>Status</th></tr></thead>
+                <tbody id="madad-transfer-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="madad-panel madad-section" data-warehouse-panel="forecasts" hidden>
+            <div class="madad-section-head"><div><div class="madad-section-title">Forecasted needs</div><div class="madad-section-caption">Expected supply requirements for this hospital</div></div><span class="madad-status status-info">Coming soon</span></div>
+            <div class="madad-empty-state"><strong>Forecast results will appear here</strong><span>This section will show expected shortages and recommended quantities when the forecasting service is connected.</span></div>
+          </section>
+        </main>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="../data/interface-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
