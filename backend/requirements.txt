@@ -1,0 +1,22 @@
+# --- data / modelling (notebooks 07-09) ---
+pandas
+numpy
+pyarrow
+scikit-learn
+xgboost>=2.0
+joblib
+pulp
+
+# --- API ---
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart          # multipart/form-data for /api/upload
+openpyxl                  # .xlsx uploads (pandas.read_excel engine)
+
+# --- chatbot ---
+groq                      # Groq SDK (OpenAI-compatible); key from backend/.env
+
+# --- tooling ---
+pytest
+python-dotenv

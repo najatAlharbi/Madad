@@ -1,0 +1,182 @@
+[
+  {
+    "id": "00378-0208",
+    "name": "Furosemide 20 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: M2 \u00b7 Size: 6 mm",
+    "strength": "20 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/00378-0208.jpg"
+  },
+  {
+    "id": "00378-3855",
+    "name": "Escitalopram 5 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: M;EC5 \u00b7 Size: 6 mm",
+    "strength": "5 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "00591-0461",
+    "name": "Glipizide 10 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: Watson;461 \u00b7 Size: 10 mm",
+    "strength": "10 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "16729-0020",
+    "name": "Pioglitazone 15 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: P;15 \u00b7 Size: 5 mm",
+    "strength": "15 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "16729-0168",
+    "name": "Escitalopram 5 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: 5 \u00b7 Size: 5 mm",
+    "strength": "5 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "50111-0434",
+    "name": "Trazodone hydrochloride 100 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: PLIVA;434 \u00b7 Size: 11 mm",
+    "strength": "100 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/50111-0434.jpg"
+  },
+  {
+    "id": "53489-0156",
+    "name": "Allopurinol 100 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: MP;71 \u00b7 Size: 10 mm",
+    "strength": "100 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/53489-0156.jpg"
+  },
+  {
+    "id": "53746-0544",
+    "name": "Primidone 50 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: AN;44 \u00b7 Size: 6 mm",
+    "strength": "50 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "57664-0377",
+    "name": "Tramadol hydrochloride 50 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Capsule \u00b7 Color: White \u00b7 Imprint: 377 \u00b7 Size: 13 mm",
+    "strength": "50 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/57664-0377.jpg"
+  },
+  {
+    "id": "62037-0831",
+    "name": "Metoprolol succinate 50 mg extended-release tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: 831 \u00b7 Size: 9 mm",
+    "strength": "50 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/62037-0831.jpg"
+  },
+  {
+    "id": "62037-0832",
+    "name": "Metoprolol succinate 100 mg extended-release tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: 832 \u00b7 Size: 10 mm",
+    "strength": "100 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/62037-0832.jpg"
+  },
+  {
+    "id": "64380-0803",
+    "name": "Ranitidine 150 mg oral tablet (Strides Pharma)",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: Brown \u00b7 Imprint: S;429 \u00b7 Size: 10 mm",
+    "strength": "150 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/64380-0803.jpg"
+  },
+  {
+    "id": "65162-0253",
+    "name": "Ranitidine 150 mg oral tablet (Amneal Pharmaceuticals)",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: Orange \u00b7 Imprint: IP;253 \u00b7 Size: 9 mm",
+    "strength": "150 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/65162-0253.jpg"
+  },
+  {
+    "id": "67253-0901",
+    "name": "Alprazolam 0.5 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Oval \u00b7 Color: Yellow \u00b7 Imprint: S901 \u00b7 Size: 9 mm",
+    "strength": "0.5 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/67253-0901.jpg"
+  },
+  {
+    "id": "68382-0008",
+    "name": "Lamotrigine 100 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: ZC;80 \u00b7 Size: 10 mm",
+    "strength": "100 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/68382-0008.jpg"
+  },
+  {
+    "id": "68382-0227",
+    "name": "Amiodarone hydrochloride 200 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: ZE;65 \u00b7 Size: 10 mm",
+    "strength": "200 mg",
+    "form": "Oral tablet",
+    "image": ""
+  },
+  {
+    "id": "69097-0127",
+    "name": "Amlodipine 5 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: 127;C \u00b7 Size: 8 mm",
+    "strength": "5 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/69097-0127.jpg"
+  },
+  {
+    "id": "69097-0128",
+    "name": "Amlodipine 10 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: 128;C \u00b7 Size: 8 mm",
+    "strength": "10 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/69097-0128.jpg"
+  },
+  {
+    "id": "69315-0904",
+    "name": "Lorazepam 0.5 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: EP;904 \u00b7 Size: 5 mm",
+    "strength": "0.5 mg",
+    "form": "Oral tablet",
+    "image": "/pharmacist/reference/69315-0904.jpg"
+  },
+  {
+    "id": "69315-0905",
+    "name": "Lorazepam 1 mg oral tablet",
+    "label": "NLM20 medicine",
+    "description": "Shape: Round \u00b7 Color: White \u00b7 Imprint: EP;905;1 \u00b7 Size: 7 mm",
+    "strength": "1 mg",
+    "form": "Oral tablet",
+    "image": ""
+  }
+]

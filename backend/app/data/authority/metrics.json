@@ -1,0 +1,174 @@
+{
+  "overall": {
+    "test_rows": 62382,
+    "coverage_p10_p90": 0.8149466192170819,
+    "mean_interval_width": 223.0303497314453,
+    "p10_pinball": 12.555712655328287,
+    "p50_pinball": 38.19695385121,
+    "p90_pinball": 27.954297962064427,
+    "p50_mae": 76.39390770242,
+    "p50_mse": 103994.96295902522,
+    "p50_rmse": 322.48250023687365,
+    "p50_wape": 0.5376301529137903,
+    "p50_r2": 0.31024277704280534
+  },
+  "per_month": [
+    {
+      "month": "2023-03",
+      "rows": 6198,
+      "coverage_p10_p90": 0.7954178767344304,
+      "mean_interval_width": 273.2422180175781,
+      "p50_mae": 101.61416300510727,
+      "p50_mse": 165434.340799372,
+      "p50_wape": 0.5520732243854131,
+      "p50_r2": 0.272398598628974
+    },
+    {
+      "month": "2023-04",
+      "rows": 6576,
+      "coverage_p10_p90": 0.8083941605839416,
+      "mean_interval_width": 278.4762268066406,
+      "p50_mae": 101.4164873404732,
+      "p50_mse": 78218.86318967443,
+      "p50_wape": 0.5209624904023265,
+      "p50_r2": 0.4266549400113562
+    },
+    {
+      "month": "2023-05",
+      "rows": 7147,
+      "coverage_p10_p90": 0.8071918287393312,
+      "mean_interval_width": 259.2534484863281,
+      "p50_mae": 88.05551554816297,
+      "p50_mse": 71781.81920482196,
+      "p50_wape": 0.49610285862925774,
+      "p50_r2": 0.44102947375744317
+    },
+    {
+      "month": "2023-06",
+      "rows": 6092,
+      "coverage_p10_p90": 0.812048588312541,
+      "mean_interval_width": 259.400634765625,
+      "p50_mae": 85.10513187307455,
+      "p50_mse": 59314.18948303984,
+      "p50_wape": 0.5480855854346859,
+      "p50_r2": 0.4374229235343112
+    },
+    {
+      "month": "2023-07",
+      "rows": 7699,
+      "coverage_p10_p90": 0.8106247564618781,
+      "mean_interval_width": 224.32098388671875,
+      "p50_mae": 82.30669830393678,
+      "p50_mse": 408825.51462281286,
+      "p50_wape": 0.5913669639699588,
+      "p50_r2": 0.16647224686833384
+    },
+    {
+      "month": "2023-08",
+      "rows": 11680,
+      "coverage_p10_p90": 0.8421232876712329,
+      "mean_interval_width": 181.3965606689453,
+      "p50_mae": 51.70518982147252,
+      "p50_mse": 25934.738412558116,
+      "p50_wape": 0.5109753167509659,
+      "p50_r2": 0.48081285905972326
+    },
+    {
+      "month": "2023-09",
+      "rows": 9095,
+      "coverage_p10_p90": 0.8158328752061572,
+      "mean_interval_width": 175.69786071777344,
+      "p50_mae": 61.18653642313372,
+      "p50_mse": 38544.25790086918,
+      "p50_wape": 0.5606448054874522,
+      "p50_r2": 0.39706949938600367
+    },
+    {
+      "month": "2023-10",
+      "rows": 7895,
+      "coverage_p10_p90": 0.8079797340088664,
+      "mean_interval_width": 191.43515014648438,
+      "p50_mae": 66.75170083813265,
+      "p50_mse": 34489.21838688321,
+      "p50_wape": 0.5363347575595635,
+      "p50_r2": 0.48310698136988284
+    }
+  ],
+  "top_10_products_by_error": [
+    {
+      "productID": 34,
+      "name1": "Folic Acid 5mg, Tab",
+      "rows": 4398,
+      "total_abs_error_p50": 1384466.6640625,
+      "mean_abs_error_p50": 314.79460301557526
+    },
+    {
+      "productID": 43,
+      "name1": "Zinc Sulphate 20mg, Dispersible, Tab",
+      "rows": 6651,
+      "total_abs_error_p50": 894767.8454208374,
+      "mean_abs_error_p50": 134.53132542788114
+    },
+    {
+      "productID": 46,
+      "name1": "Paracetamol (Acetaminophen) 250mg, Dispersible, Tab",
+      "rows": 3958,
+      "total_abs_error_p50": 692690.3440465927,
+      "mean_abs_error_p50": 175.01019303855298
+    },
+    {
+      "productID": 38,
+      "name1": "Albendazole 400mg, Tab",
+      "rows": 6468,
+      "total_abs_error_p50": 470164.21153640747,
+      "mean_abs_error_p50": 72.6908181101434
+    },
+    {
+      "productID": 42,
+      "name1": "Methyldopa 250mg, Tab",
+      "rows": 5742,
+      "total_abs_error_p50": 264450.88469719887,
+      "mean_abs_error_p50": 46.055535474956265
+    },
+    {
+      "productID": 50,
+      "name1": "Paracetamol (Acetaminophen) 500mg, Tab",
+      "rows": 1016,
+      "total_abs_error_p50": 206458.8420944214,
+      "mean_abs_error_p50": 203.20752174647774
+    },
+    {
+      "productID": 39,
+      "name1": "Oral Rehydration Salts (ORS), Sachet",
+      "rows": 4118,
+      "total_abs_error_p50": 155346.4892091751,
+      "mean_abs_error_p50": 37.723771056137714
+    },
+    {
+      "productID": 44,
+      "name1": "Glove, Exam, Latex, Medium, Nonsterile, Disposable, Pcs",
+      "rows": 2179,
+      "total_abs_error_p50": 139721.404463768,
+      "mean_abs_error_p50": 64.12180103890225
+    },
+    {
+      "productID": 32,
+      "name1": "Ampicillin 500mg, Pdr for IM/IV, Inj, Vial",
+      "rows": 3072,
+      "total_abs_error_p50": 103191.8554507494,
+      "mean_abs_error_p50": 33.59109877954082
+    },
+    {
+      "productID": 19,
+      "name1": "Ferrous Sulphate 200mg, Tab",
+      "rows": 304,
+      "total_abs_error_p50": 84103.51737976074,
+      "mean_abs_error_p50": 276.6563071702656
+    }
+  ],
+  "gates": {
+    "coverage_min": 0.78,
+    "coverage_max": 0.84,
+    "wape_max": 0.6
+  }
+}

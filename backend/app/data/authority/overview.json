@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-25T12:01:49.122605+00:00",
+  "period": "2023-03..2023-10",
+  "rows_forecast": 82008,
+  "status_counts": {
+    "Predicted Deficit": 42363,
+    "Potential Surplus": 39645
+  },
+  "redistribution": {
+    "total_deficit_before": 6750642.214248657,
+    "total_potential_surplus_before": 27845304.927388668,
+    "optimized_transferred": 4280538.643172,
+    "remaining_unmet_demand": 2470103.5710940403,
+    "coverage_pct": 63.409354359456614,
+    "number_of_transfers": 31934,
+    "mean_transfer_distance_km": 30.96098636464187,
+    "median_transfer_distance_km": 22.416653436683227
+  },
+  "last_evaluation": {
+    "test_rows": 62382,
+    "coverage_p10_p90": 0.8149466192170819,
+    "mean_interval_width": 223.0303497314453,
+    "p10_pinball": 12.555712655328287,
+    "p50_pinball": 38.19695385121,
+    "p90_pinball": 27.954297962064427,
+    "p50_mae": 76.39390770242,
+    "p50_rmse": 322.48250023687365,
+    "p50_wape": 0.5376301529137903,
+    "p50_r2": 0.31024277704280534
+  }
+}

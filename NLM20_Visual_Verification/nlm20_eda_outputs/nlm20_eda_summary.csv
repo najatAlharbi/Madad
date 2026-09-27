@@ -1,0 +1,15 @@
+metric,value
+total_images,13955.0
+ndc_classes,20.0
+train_images,8393.0
+valid_images,2776.0
+test_images,2786.0
+readable_images,13955.0
+corrupted_images,0.0
+exact_duplicate_groups,0.0
+images_in_duplicate_groups,0.0
+cross_split_duplicate_groups,0.0
+conflicting_ndc_duplicate_groups,0.0
+smallest_class_size,160.0
+largest_class_size,1001.0
+class_imbalance_ratio,6.2562

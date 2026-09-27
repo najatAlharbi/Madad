@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — My Hospital Warehouse</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<aside class="side">
+<a class="brand" href="Main.dc.html" aria-label="Madad home"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div class="ws">Workspace / Warehouse</div>
+<nav aria-label="Warehouse" style="display: flex; flex-direction: column; gap: 4px;">
+<a class="nav on" href="WarehouseHome.dc.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>My Warehouse</a>
+<a class="nav" href="Forecasts.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M6 16v-4"></path><path d="M10 16V9"></path><path d="M14 16v-6"></path><path d="M18 16V6"></path></svg>Forecasted Needs</a>
+<a class="nav" href="Transfers.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg>Get &amp; Share Stock</a>
+<a class="nav" href="Upload.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>Upload Data</a>
+<a class="nav" href="Assistant.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M8.5 11h.01"></path><path d="M12 11h.01"></path><path d="M15.5 11h.01"></path></svg>Ask Madad</a>
+</nav>
+<div class="care"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg><div style="font-size: 17px; font-weight: 700; line-height: 1.3; color: #16362B;">Connected supplies.<br>Better care.</div><div class="small muted">Facility 780 · Kambia · MCHP</div><div style="display: flex; gap: 14px; font-size: 12px; font-weight: 600; margin-top: 2px;"><a href="Main.dc.html">Switch workspace</a><a href="Model.dc.html">How it works</a></div></div>
+</aside>
+<main class="main">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+<div>
+<div class="crumb">Madad / Warehouse operations</div>
+<h1 class="h1">My Hospital Warehouse</h1>
+<p class="sub">Facility 780 · Kambia · MCHP · stock counted March 2023</p>
+</div>
+<div style="display: flex; gap: 12px; align-items: center;"><span class="demo">Demo warehouse · sample values except Product 39</span><div style="display: flex; gap: 10px; align-items: center;"><span class="portal">Hospital Portal</span><span class="av" role="img" aria-label="Warehouse manager">WM</span></div></div>
+</div>
+
+<section class="hero" aria-labelledby="heroTitle" style="height: 196px; box-sizing: border-box;">
+<div style="position: relative; z-index: 1; max-width: 640px;">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #E9DFD4;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #9E8251;"></span>April 2023 outlook</div>
+<h2 id="heroTitle" style="font-size: 34px; font-weight: 700; line-height: 1.15; margin: 12px 0 0;">3 supplies may run out in April.</h2>
+<p style="font-size: 15px; color: #D5E4DC; margin: 8px 0 0;">Nearby hospitals can cover two of them.</p>
+<div style="display: flex; gap: 10px; margin-top: 18px;">
+<a class="btn btn-w" href="Forecasts.dc.html">Review forecasts</a>
+<a class="btn btn-o" href="Upload.dc.html">Upload April stock</a>
+</div>
+</div>
+<svg width="360" height="260" viewBox="0 0 360 260" aria-hidden="true" style="position: absolute; right: 10px; top: 50%; margin-top: -130px;">
+<circle cx="200" cy="130" r="118" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"></circle>
+<circle cx="200" cy="130" r="78" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1" stroke-dasharray="3 5"></circle>
+<circle cx="318" cy="130" r="4" fill="#9E8251"></circle><circle cx="96" cy="72" r="3" fill="#9E8251"></circle><circle cx="250" cy="226" r="3" fill="rgba(255,255,255,.5)"></circle>
+<rect x="164" y="94" width="72" height="72" rx="18" fill="#DDE9E0"></rect>
+<g fill="none" stroke="#055444" stroke-width="2.2" stroke-linejoin="round"><path d="M186 122l14-7 14 7v16l-14 7-14-7z"></path><path d="M186 122l14 7 14-7"></path><path d="M200 129v16"></path></g>
+<rect x="84" y="34" width="50" height="50" rx="14" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.25)"></rect>
+<g fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"><path d="M99 72V50h20v22"></path><path d="M109 55v8"></path><path d="M105 59h8"></path></g>
+<rect x="268" y="72" width="46" height="46" rx="13" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.25)"></rect>
+<g fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"><path d="M281 90l10-5 10 5v11l-10 5-10-5z"></path></g>
+<rect x="120" y="176" width="46" height="46" rx="13" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.25)"></rect>
+<g fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"><path d="M143 210l-9-9a5 5 0 0 1 9-5 5 5 0 0 1 9 5z"></path></g>
+</svg>
+</section>
+
+<section aria-label="Emergency request" style="display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: 16px; background: #FBF7F2; border: 1px solid #EFE4D6;">
+<span style="width: 46px; height: 46px; border-radius: 12px; background: #F3E6D6; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18v-6a5 5 0 0 1 10 0v6"></path><path d="M5 21h14"></path><path d="M12 3v2"></path><path d="M4.2 7.2l1.4 1.4"></path><path d="M19.8 7.2l-1.4 1.4"></path></svg></span>
+<div style="flex-grow: 1;"><div style="font-size: 15px; font-weight: 700;">Need a critical medical supply now?</div></div>
+<a class="btn btn-red" href="Transfers.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>Emergency supply request</a>
+</section>
+
+<section aria-label="This month in numbers" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;">
+<div class="card"><div style="display: flex; justify-content: space-between;"><span class="kl">Supplies tracked</span><span class="pill p-neu">All</span></div><div class="kv">36</div></div>
+<div class="card"><div style="display: flex; justify-content: space-between;"><span class="kl">Likely to run out</span><span class="pill p-crit">Critical</span></div><div class="kv" style="color: #8A2A25;">3</div></div>
+<div class="card"><div style="display: flex; justify-content: space-between;"><span class="kl">Short in a busy month</span><span class="pill p-risk">At risk</span></div><div class="kv" style="color: #74501A;">1</div></div>
+<div class="card"><div style="display: flex; justify-content: space-between;"><span class="kl">Extra you can share</span><span class="pill p-sur">Surplus</span></div><div class="kv" style="color: #1F5A66;">3</div></div>
+</section>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-labelledby="actTitle" style="display: flex; flex-direction: column; padding-bottom: 10px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+<h2 class="h2" id="actTitle">What to do this month</h2>
+<a href="Forecasts.dc.html" class="small" style="font-weight: 600;">All forecasts</a>
+</div>
+<sc-for list="{{ acts }}" as="a" hint-placeholder-count="5">
+<div class="row" style="display: grid; grid-template-columns: 96px minmax(0, 1fr) 150px; gap: 14px; align-items: center; padding: 13px 0;">
+<span class="{{ a.cls }}">{{ a.tag }}</span>
+<div><div style="font-size: 14px; font-weight: 700;">{{ a.title }}</div><div class="small muted" style="margin-top: 3px; line-height: 1.45;">{{ a.detail }}</div></div>
+<a class="btn btn-sm" href="{{ a.href }}" style="justify-self: end;">{{ a.cta }}</a>
+</div>
+</sc-for>
+</section>
+
+<section class="ai" aria-labelledby="aiTitle" style="display: flex; flex-direction: column; gap: 12px;">
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Madad assistant</span>
+<h2 id="aiTitle" class="h2" style="font-size: 17px; line-height: 1.35;">Product 39 is the one to fix first.</h2>
+<p style="font-size: 14px; line-height: 1.6; margin: 0; color: #3E4F48;">32 units in stock against a forecast of 35, up to 78 in a busy April. Two warehouses nearby have extra. Product 50 is short everywhere — order that one.</p>
+
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+<a class="btn" href="Assistant.dc.html" style="justify-content: flex-start;">Why is Product 39 critical?</a>
+<a class="btn" href="Assistant.dc.html" style="justify-content: flex-start;">What should I order this month?</a>
+<a class="btn btn-pri" href="Assistant.dc.html">Ask Madad</a>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      acts: [
+        { tag: 'Critical', cls: 'pill p-crit', title: 'Product 39: get 46 units', detail: 'Two nearby warehouses have extra', cta: 'See donors', href: 'Transfers.dc.html' },
+        { tag: 'Critical', cls: 'pill p-crit', title: 'Product 46: get 70 units', detail: 'Facility 1102 · 8.4 km · has 180 spare', cta: 'Request', href: 'Transfers.dc.html' },
+        { tag: 'Critical', cls: 'pill p-crit', title: 'Product 50: order from central store', detail: 'Short across the network — transfers cover 15.5%', cta: 'Draft order', href: 'Assistant.dc.html' },
+        { tag: 'At risk', cls: 'pill p-risk', title: 'Product 34: short 30 in a busy month', detail: 'Covered in a typical month only', cta: 'See donors', href: 'Transfers.dc.html' },
+        { tag: 'Surplus', cls: 'pill p-sur', title: 'Product 1: 140 units you can share', detail: '1 hospital asked for 90 units', cta: 'Review request', href: 'Transfers.dc.html' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

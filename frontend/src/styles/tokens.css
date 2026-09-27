@@ -1,0 +1,213 @@
+/* Madad design tokens.
+ *
+ * Direction: a field instrument for public-health logistics. The register is
+ * clinical and institutional — a well-made measuring tool, not a SaaS
+ * dashboard. Structure comes from a dark rail and hairline rules rather than
+ * from stacking rounded cards; colour is used to encode severity, not to
+ * decorate.
+ *
+ * Extends the approved palette in design/design-tokens.md: the brand hues
+ * (green-700, gold-600, the status set) are unchanged, with a deeper ink
+ * range and warm paper surfaces added so the interface has an anchor and the
+ * greens have somewhere to sit.
+ */
+
+:root {
+  /* ---- structure: deep forest ink, the app's frame ---- */
+  --ink-900: #07231c;
+  --ink-800: #0c2e25;
+  --ink-700: #143f33;
+  --ink-600: #1d5242;
+
+  /* ---- brand green: primary action ---- */
+  --green-900: #03392e;
+  --green-700: #055444;
+  --green-600: #0a6a54;
+  --green-200: #cfe0d6;
+  --green-100: #e3ede5;
+  --green-050: #eff4ee;
+
+  /* ---- gold: accent, attention, the second voice ---- */
+  --gold-700: #7e6233;
+  --gold-600: #9e8251;
+  --gold-400: #c2a878;
+  --gold-100: #efe4d2;
+  --gold-050: #f8f2e7;
+
+  /* ---- paper: warm, not clinical grey ---- */
+  --paper: #f6f4ed;
+  --paper-2: #efece2;
+  --surface: #ffffff;
+  --surface-2: #fbfaf5;
+  --line: #e4e1d6;
+  --line-2: #d3cfc0;
+  --line-strong: #bdb8a6;
+
+  /* ---- ink on paper ---- */
+  --text-900: #14312a;
+  --text-700: #3b4a43;
+  --text-500: #6c7a72;
+  --text-400: #8b968e;
+
+  /* ---- ink on dark ---- */
+  --on-dark: #f3f1e8;
+  --on-dark-dim: #a9bdb2;
+  --on-dark-faint: #6f8a7d;
+
+  /* ---- status: a severity ramp, used for encoding ---- */
+  --critical: #9b2f2a;
+  --critical-bg: #f7e4e1;
+  --critical-fg: #8a2a25;
+  --at-risk: #9e8251;
+  --at-risk-bg: #f5ecdd;
+  --at-risk-fg: #74501a;
+  --surplus: #2c6a7f;
+  --surplus-bg: #e1eef0;
+  --surplus-fg: #1f5a66;
+  --ok: #1f5b3f;
+  --ok-bg: #e4efe6;
+  --neutral-bg: #eceade;
+  --neutral-fg: #46554f;
+
+  /* ---- type ---- */
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-ar: 'IBM Plex Sans Arabic', 'IBM Plex Sans', system-ui, sans-serif;
+
+  /* A 1.25 scale, tuned by eye at the small end where the UI actually lives. */
+  --t-display: 2.5rem;    /* 40 — page titles, serif */
+  --t-hero: 2rem;         /* 32 — hero statements, serif */
+  --t-title: 1.375rem;    /* 22 — section headline, serif */
+  --t-h2: 0.9375rem;      /* 15 — panel heading, sans 600 */
+  --t-body: 0.875rem;     /* 14 */
+  --t-small: 0.8125rem;   /* 13 */
+  --t-micro: 0.6875rem;   /* 11 — labels, eyebrows */
+  --t-metric: 1.75rem;    /* 28 — headline numbers, mono */
+  --t-metric-sm: 1.25rem; /* 20 */
+
+  --track-label: 0.09em;  /* letter-spacing for uppercase labels */
+  --track-wordmark: 0.22em;
+
+  /* ---- space: a 4px grid ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+
+  /* ---- shape: restrained. Panels are barely rounded; only pills are round. */
+  --r-panel: 6px;
+  --r-control: 5px;
+  --r-pill: 999px;
+
+  --rail-w: 244px;
+  --detail-w: 380px;
+  --control-h: 40px;
+  --control-h-sm: 32px;
+
+  /* One shadow, used sparingly for things that genuinely float. */
+  --shadow-pop: 0 8px 24px -12px rgba(7, 35, 28, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text-700);
+  font-family: var(--font-ui);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Quantities are measurements: monospaced, aligned, never reflowing. */
+.mono,
+.metric,
+td.num,
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  color: var(--text-900);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-family: var(--font-ui);
+  font-size: var(--t-h2);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+p { margin: 0; }
+
+a {
+  color: var(--green-700);
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+a:hover { color: var(--green-900); }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Arabic (assistant replies) keeps the same family, switched to its Arabic cut. */
+[dir='rtl'],
+[lang='ar'] {
+  font-family: var(--font-ar);
+}
+
+/* One focus treatment everywhere, visible on both paper and ink. */
+:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.on-ink :focus-visible {
+  outline-color: var(--gold-400);
+}
+
+::selection {
+  background: var(--green-200);
+  color: var(--ink-900);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

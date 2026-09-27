@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — Choose your workspace</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+@keyframes mspin{to{transform:rotate(360deg)}}
+@keyframes mpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes mbar{0%{width:0}100%{width:100%}}
+@keyframes mfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.spin{animation:mspin 1.6s linear infinite;transform-origin:50% 50%}
+.pulse{animation:mpulse 2s ease-in-out infinite}
+.bar{animation:mbar 2.2s ease-out forwards}
+.fade{animation:mfade .6s ease-out both}
+.ws-card{display:flex;flex-direction:column;gap:14px;background:#FFFFFF;border:1px solid #E3E7DF;border-radius:20px;padding:26px 28px;text-decoration:none;color:#16362B;box-sizing:border-box;transition:border-color .15s, box-shadow .15s}
+.ws-card:hover{border-color:#9E8251;box-shadow:0 8px 24px rgba(5,84,68,.08);color:#16362B}
+.tick{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:#3E4F48}
+.tick svg{flex-shrink:0;margin-top:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; overflow: hidden; background: #F4F6F1; position: relative;">
+
+<sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+<div role="status" aria-live="polite" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; background: #F4F6F1;">
+<div style="position: relative; width: 240px; height: 240px; display: flex; align-items: center; justify-content: center;">
+<svg class="spin" width="240" height="240" viewBox="0 0 240 240" aria-hidden="true" style="position: absolute; inset: 0;">
+<circle cx="120" cy="120" r="112" fill="none" stroke="#E3E7DF" stroke-width="3"></circle>
+<path d="M120 8 A112 112 0 0 1 232 120" fill="none" stroke="#055444" stroke-width="3" stroke-linecap="round"></path>
+<circle cx="232" cy="120" r="5" fill="#9E8251"></circle>
+</svg>
+<img class="pulse" src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo" style="width: 150px; height: 170px; object-fit: contain;">
+</div>
+<div style="text-align: center;">
+<div class="wm" style="font-size: 30px;">MADAD</div>
+<div class="wms" style="font-size: 12px; margin-top: 10px;">Medical Logistics</div>
+</div>
+<div style="width: 260px; height: 4px; border-radius: 2px; background: #E3E7DF; overflow: hidden;"><div class="bar" style="height: 4px; background: #055444; border-radius: 2px;"></div></div>
+<div class="small muted">Connecting hospital warehouses…</div>
+<button class="btn btn-sm" onClick="{{ skip }}" style="margin-top: 6px;">Skip</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+<div class="fade" style="position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) 540px;">
+<div style="padding: 56px 72px 40px; display: flex; flex-direction: column; gap: 0;">
+<div style="display: flex; align-items: center; gap: 16px;">
+<img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo" style="width: 62px; height: 70px; object-fit: contain;">
+<div><div class="wm" style="font-size: 28px;">MADAD</div><div class="wms" style="font-size: 11px; margin-top: 8px;">Medical Logistics</div></div>
+</div>
+
+<div class="eyebrow" style="margin-top: 72px;">Connected supplies. Better care.</div>
+<h1 style="font-size: 60px; line-height: 1.05; font-weight: 700; letter-spacing: -.02em; margin: 16px 0 0; color: #16362B;">Every connection<br>makes a difference.</h1>
+<p style="font-size: 17px; line-height: 1.55; color: #3E4F48; margin: 18px 0 0; max-width: 640px;">Madad predicts next month's medicine needs for every hospital warehouse, and shows where to get what is missing from nearby warehouses with extra stock.</p>
+
+<div style="font-size: 14px; color: #5F6F68; margin-top: 40px; margin-bottom: 14px;">Choose your workspace</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;">
+<a class="ws-card" href="WarehouseHome.dc.html">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<span class="eyebrow">01 / Operations</span>
+<span style="width: 48px; height: 48px; border-radius: 14px; background: #E9DFD4; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"></path><path d="M9 21v-6h6v6"></path><path d="M12 8v4"></path><path d="M10 10h4"></path></svg></span>
+</div>
+<div style="font-size: 23px; font-weight: 700;">Hospital Warehouse Manager</div>
+<div style="font-size: 14px; line-height: 1.5; color: #5F6F68;">Run your own warehouse: upload stock, see what you will need next month, and get it from the nearest hospital.</div>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Upload monthly stock records</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Next-month forecasts and risk for each supply</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Which hospital can send you what, and how far</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>AI assistant that explains every recommendation</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 16px; border-top: 1px solid #EEF1EC;">
+<span style="font-size: 14px; font-weight: 700; color: #055444;">Open workspace ↗</span>
+<span class="pill p-ok">Can upload data</span>
+</div>
+</a>
+
+<a class="ws-card" href="AuthorityHome.dc.html">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<span class="eyebrow">02 / Oversight</span>
+<span style="width: 48px; height: 48px; border-radius: 14px; background: #E9DFD4; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><circle cx="4.5" cy="6" r="2"></circle><circle cx="19.5" cy="6" r="2"></circle><circle cx="12" cy="20.5" r="2"></circle><path d="M6.3 7.1l3.3 3"></path><path d="M17.7 7.1l-3.3 3"></path><path d="M12 15v3.5"></path></svg></span>
+</div>
+<div style="font-size: 23px; font-weight: 700;">Regulatory Authority</div>
+<div style="font-size: 14px; line-height: 1.5; color: #5F6F68;">See the whole network at a glance: where shortages are, what transfers can fix, and what must be bought.</div>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Network-wide shortage and surplus</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Supplies that need procurement</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Transfer plan monitoring</div>
+<div class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#055444" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>AI briefs in English and Arabic</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 16px; border-top: 1px solid #EEF1EC;">
+<span style="font-size: 14px; font-weight: 700; color: #055444;">Open workspace ↗</span>
+<span class="pill p-neu">View only</span>
+</div>
+</a>
+</div>
+
+<div style="margin-top: auto; padding-top: 22px; border-top: 1px solid #E3E7DF; display: flex; justify-content: space-between; font-size: 12px; color: #5F6F68;">
+<span>Madad interface preview · Proof of concept on Sierra Leone essential-medicines data (Dryad)</span>
+<a href="Model.dc.html" style="font-weight: 600;">How Madad works</a>
+</div>
+</div>
+
+<div style="background: #055444; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 48px;">
+<svg width="440" height="440" viewBox="0 0 440 440" role="img" aria-label="Hospital warehouses connected to a shared supply network" style="display: block;">
+<circle cx="220" cy="220" r="200" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="2"></circle>
+<circle cx="220" cy="220" r="176" fill="none" stroke="#9E8251" stroke-opacity=".6" stroke-width="1.5"></circle>
+<circle cx="220" cy="220" r="96" fill="#0B6552"></circle>
+<circle cx="220" cy="220" r="96" fill="none" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 6"></circle>
+<g stroke="#C9B38A" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"><line x1="220" y1="84" x2="220" y2="130"></line><line x1="92" y1="262" x2="134" y2="244"></line><line x1="348" y1="262" x2="306" y2="244"></line></g>
+<g fill="#9E8251"><circle cx="220" cy="128" r="6"></circle><circle cx="134" cy="244" r="6"></circle><circle cx="306" cy="244" r="6"></circle></g>
+<rect x="186" y="186" width="68" height="68" rx="18" fill="#E9DFD4"></rect>
+<g fill="none" stroke="#055444" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M204 214l16-8 16 8v18l-16 8-16-8z"></path><path d="M204 214l16 8 16-8"></path><path d="M220 222v18"></path><path d="M220 196v10"></path><path d="M215 201h10"></path></g>
+<circle cx="220" cy="54" r="40" fill="#E9DFD4"></circle>
+<g fill="none" stroke="#055444" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M204 74V42h32v32"></path><path d="M220 48v10"></path><path d="M215 53h10"></path><path d="M215 74v-8h10v8"></path></g>
+<circle cx="66" cy="272" r="40" fill="#E9DFD4"></circle>
+<g fill="none" stroke="#055444" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M50 290v-20l16-10 16 10v20z"></path><path d="M66 272v8"></path><path d="M62 276h8"></path></g>
+<circle cx="374" cy="272" r="40" fill="#E9DFD4"></circle>
+<g fill="none" stroke="#055444" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M358 290v-20l16-10 16 10v20z"></path><path d="M374 272v8"></path><path d="M370 276h8"></path></g>
+</svg>
+<div style="text-align: center; color: #FFFFFF; margin-top: 28px;">
+<div style="font-size: 26px; font-weight: 700; line-height: 1.25;">One network.<br>A clearer picture.</div>
+<div style="display: flex; gap: 28px; justify-content: center; margin-top: 26px;">
+<div><div class="num" style="font-size: 26px; font-weight: 700;">1,091</div><div style="font-size: 12px; color: #CFE0D8; margin-top: 4px;">hospital warehouses</div></div>
+<div style="width: 1px; background: rgba(255,255,255,.2);"></div>
+<div><div class="num" style="font-size: 26px; font-weight: 700;">36</div><div style="font-size: 12px; color: #CFE0D8; margin-top: 4px;">essential supplies</div></div>
+<div style="width: 1px; background: rgba(255,255,255,.2);"></div>
+<div><div class="num" style="font-size: 26px; font-weight: 700;">81.5%</div><div style="font-size: 12px; color: #CFE0D8; margin-top: 4px;">forecast range hit rate</div></div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+  componentDidMount() {
+    this._t = setTimeout(() => this.setState({ loading: false }), 2400);
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t);
+  }
+  renderVals() {
+    return {
+      loading: this.state.loading,
+      ready: !this.state.loading,
+      skip: () => { clearTimeout(this._t); this.setState({ loading: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

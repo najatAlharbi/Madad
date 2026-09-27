@@ -1,0 +1,47 @@
+/* Match the supplied React application's forest rail, warm paper and type scale. */
+html,body{background:var(--paper);padding:0;margin:0;color-scheme:light}
+#madad-interfaces{--madad-window:var(--paper);--madad-text:var(--text-900);--madad-muted:var(--text-500);--madad-primary:var(--green-700);--madad-primary-text:#fff;--madad-border:var(--line);--madad-surface:var(--surface);--madad-surface-strong:var(--paper-2);font-family:var(--font-ui);max-width:none}
+#madad-interfaces .madad-product-window{border:0;border-radius:0;box-shadow:none;background:var(--paper)}
+#madad-interfaces .madad-screen{grid-template-columns:244px minmax(0,1fr);min-height:100vh;background:linear-gradient(90deg,var(--ink-900) 244px,var(--paper) 244px)}
+#madad-interfaces .madad-sidebar{background:var(--ink-900);padding:24px 16px;position:sticky;top:0;height:100vh;gap:12px;border-radius:0;color:var(--on-dark)}
+#madad-interfaces .madad-brand{padding:0 8px 24px;gap:12px}
+#madad-interfaces .madad-brand-mark{width:34px;height:39px;border:0;background:transparent;box-shadow:none;border-radius:0}
+#madad-interfaces .madad-brand-logo{width:34px;height:39px;object-fit:contain}
+#madad-interfaces .madad-brand-name{font-family:var(--font-display);letter-spacing:.22em;font-size:18px;font-weight:500}
+#madad-interfaces .madad-brand-sub{font-size:10px;letter-spacing:.09em;color:#a9bdb2}
+#madad-interfaces .madad-side-role{background:none;border:0;padding:8px;color:#a9bdb2;font-size:11px;letter-spacing:.09em}
+#madad-interfaces .madad-side-item{position:relative;min-height:44px;border:0;border-radius:5px;background:transparent;color:var(--on-dark-dim);padding:8px 12px;font-size:13px;box-shadow:none;transform:none}
+#madad-interfaces .madad-side-item.is-active{background:var(--ink-700);color:var(--on-dark)}
+#madad-interfaces .madad-side-item.is-active:before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:2px;background:var(--gold-400)}
+#madad-interfaces .madad-side-foot{font-size:12px;line-height:1.7;color:var(--on-dark-dim);border-top:1px solid var(--ink-700)}
+.switch-workspace{display:block;color:var(--on-dark);padding:10px 0;margin-top:16px}
+#madad-interfaces .madad-main{padding:32px 40px;min-width:0;background:var(--paper)}
+#madad-interfaces .madad-topbar{padding:0 0 28px;border-bottom:1px solid var(--line);margin-bottom:24px;align-items:flex-start;background:transparent}
+#madad-interfaces .madad-title h1{font-family:var(--font-display);font-size:40px;font-weight:400;letter-spacing:-.015em;margin:8px 0}
+.breadcrumb{font-size:11px;letter-spacing:.09em;color:var(--text-500);text-transform:uppercase}
+#madad-interfaces .madad-avatar{background:var(--green-100);color:var(--green-700);border:1px solid var(--green-200);border-radius:50%}
+#madad-interfaces .madad-demo-label{background:none;border:0;color:var(--text-500);font-size:12px}
+#madad-interfaces .madad-action-feedback{background:transparent;border:0;border-left:2px solid var(--gold-600);border-radius:0;padding:8px 12px;margin-bottom:24px}
+#madad-interfaces .madad-search-row{background:#fff;border:1px solid var(--line);border-radius:6px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;box-shadow:none}
+.search-heading{grid-column:1/-1}.search-heading h2{font-size:22px;font-family:var(--font-display);font-weight:400;margin:6px 0}.search-heading p{font-size:13px;color:var(--text-500)}.eyebrow{font-size:11px;letter-spacing:.09em;color:var(--gold-700)}
+#madad-interfaces .madad-search-box{min-width:0;width:100%}
+#madad-interfaces .madad-input,#madad-interfaces .madad-textarea{background:white;border:1px solid var(--line-2);border-radius:5px;min-height:44px;box-shadow:none}
+#madad-interfaces .madad-primary-button{background:var(--green-700);border-radius:5px;box-shadow:none;min-height:44px}
+#madad-interfaces .madad-medicine-result,#madad-interfaces .madad-section,#madad-interfaces .madad-form-box{background:white;border:1px solid var(--line);border-radius:6px;box-shadow:none;margin-top:24px}
+#madad-interfaces .madad-medicine-result{grid-template-columns:220px minmax(0,1fr)}
+#madad-interfaces .madad-medicine-visual{background:var(--surface-2);min-height:250px}
+#madad-interfaces .madad-medicine-name{font-family:var(--font-display);font-size:26px;font-weight:400}
+#madad-interfaces .madad-detail{border-radius:0;background:var(--surface-2);border:0;border-bottom:1px solid var(--line)}
+#madad-interfaces .madad-metric{border-radius:6px;box-shadow:none}
+#madad-interfaces button:focus-visible,#madad-interfaces input:focus-visible{outline:2px solid var(--green-600);outline-offset:3px}
+#medicine-candidates button{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:5px;padding:16px;margin:8px 0;cursor:pointer}
+#medicine-candidates button:hover{border-color:var(--green-600);background:var(--green-050)}
+[hidden]{display:none!important}
+@media(max-width:900px){#madad-interfaces .madad-main{padding:24px}#madad-interfaces .madad-screen{grid-template-columns:210px minmax(0,1fr)}#madad-interfaces .madad-medicine-result{grid-template-columns:1fr}#madad-interfaces .madad-medicine-visual{min-height:120px}#madad-interfaces .madad-top-actions{display:none}}
+@media(max-width:650px){#madad-interfaces .madad-screen{display:block;background:var(--paper)}#madad-interfaces .madad-sidebar{position:static;height:auto;padding:16px;display:flex}#madad-interfaces .madad-brand{padding-bottom:8px}#madad-interfaces .madad-side-nav{display:grid;grid-template-columns:1fr 1fr;gap:4px}#madad-interfaces .madad-side-foot{margin-top:8px;padding-top:0}#madad-interfaces .madad-side-foot p{display:none}.switch-workspace{margin-top:0}#madad-interfaces .madad-main{padding:20px 16px}#madad-interfaces .madad-title h1{font-size:32px}#madad-interfaces .madad-search-row{padding:16px;grid-template-columns:minmax(0,1fr)}#madad-interfaces .madad-search-box{width:100%}#madad-interfaces .madad-fields{grid-template-columns:1fr}}
+
+#madad-interfaces .photo-search{border-radius:6px;background:var(--surface)}
+#madad-interfaces .madad-title p{max-width:65ch}
+#madad-interfaces .madad-side-item svg{flex-shrink:0}
+
+#madad-interfaces{color-scheme:light}

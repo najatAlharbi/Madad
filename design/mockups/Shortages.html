@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madad — Shortages and procurement</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F1;color:#16362B;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif}
+a{color:#055444}a:hover{color:#03392E}
+.side{width:256px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E3E7DF;display:flex;flex-direction:column;padding:22px 14px 18px;gap:2px;box-sizing:border-box}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 24px;text-decoration:none;color:#16362B}
+.brand img{width:44px;height:50px;object-fit:contain}
+.wm{font-size:22px;font-weight:700;letter-spacing:.2em;color:#16362B;line-height:1}
+.wms{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5F6F68;margin-top:6px}
+.ws{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B7A73;padding:8px 12px 12px}
+.nav{display:flex;align-items:center;gap:12px;height:48px;padding:0 14px;border-radius:10px;color:#3E4F48;text-decoration:none;font-size:14px;font-weight:500;border-left:3px solid transparent}
+.nav:hover{background:#F1F5F1;color:#16362B}
+.nav.on{background:#E6EFE8;color:#055444;font-weight:600;border-left-color:#9E8251}
+.care{margin-top:auto;padding:16px;border-radius:14px;background:#EEF3EC;display:flex;flex-direction:column;gap:8px}
+.main{flex-grow:1;display:flex;flex-direction:column;min-width:0;padding:26px 36px 28px;gap:18px;box-sizing:border-box}
+.crumb{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B7A73}
+.h1{font-size:30px;font-weight:700;margin:8px 0 0;color:#16362B;letter-spacing:-.01em;line-height:1.15}
+.sub{font-size:14px;color:#5F6F68;margin:6px 0 0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7E6233}
+.card{background:#FFFFFF;border:1px solid #E3E7DF;border-radius:16px;padding:20px 22px;box-sizing:border-box}
+.h2{font-size:16px;font-weight:700;margin:0;color:#16362B}
+.muted{color:#5F6F68}.small{font-size:12px}
+.num{font-variant-numeric:tabular-nums}
+.kl{font-size:13px;color:#5F6F68}
+.kv{font-size:30px;font-weight:700;margin-top:10px;color:#16362B;font-variant-numeric:tabular-nums;line-height:1.1}
+.portal{height:40px;padding:0 16px;border-radius:999px;border:1px solid #DCE2D9;background:#FFFFFF;display:inline-flex;align-items:center;font-size:13px;color:#3E4F48;text-decoration:none}
+.av{width:42px;height:42px;border-radius:50%;background:#E3ECE3;color:#055444;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.btn{height:44px;padding:0 18px;border-radius:10px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:14px;font-weight:600;color:#16362B;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-sizing:border-box;white-space:nowrap}
+.btn:hover{background:#F1F5F1;color:#16362B}
+.btn-pri{background:#055444;border-color:#055444;color:#FFFFFF}.btn-pri:hover{background:#03392E;color:#FFFFFF}
+.btn-red{background:#9B2F2A;border-color:#9B2F2A;color:#FFFFFF}.btn-red:hover{background:#7E2420;color:#FFFFFF}
+.btn-w{background:#FFFFFF;border-color:#FFFFFF;color:#055444}.btn-w:hover{background:#EEF3EC;color:#03392E}
+.btn-o{background:transparent;border-color:rgba(255,255,255,.55);color:#FFFFFF}.btn-o:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.btn-sm{height:36px;padding:0 12px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-crit{background:#F7E4E1;color:#8A2A25}.p-risk{background:#F5ECDD;color:#74501A}.p-sur{background:#E1EEF0;color:#1F5A66}.p-ok{background:#E4EFE6;color:#1F5B3F}.p-neu{background:#EEF0EC;color:#46554F}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid #D3DAD0;background:#FFFFFF;font-family:inherit;font-size:13px;font-weight:600;color:#3E4F48;cursor:pointer}
+.chip.on{background:#055444;border-color:#055444;color:#FFFFFF}
+.select,.input{height:44px;border:1px solid #D3DAD0;border-radius:10px;padding:0 12px;font-family:inherit;font-size:14px;background:#F9FAF8;color:#16362B;box-sizing:border-box}
+.fl{font-size:13px;font-weight:600;color:#16362B}
+.ai{background:#F3F6F1;border:1px solid #D5E1D8;border-radius:16px;padding:18px 20px}
+.ai-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#055444}
+.hero{position:relative;overflow:hidden;background:#055444;border-radius:18px;color:#FFFFFF;padding:26px 34px;flex-shrink:0}
+.seg{display:inline-flex;background:#EAEFE8;border-radius:12px;padding:4px;gap:4px}
+.seg button{height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#46554F;cursor:pointer}
+.seg button.on{background:#FFFFFF;color:#055444;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.demo{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;background:#F5ECDD;color:#74501A;font-size:12px;font-weight:600}
+.row{border-bottom:1px solid #EEF1EC}
+</style>
+
+<style>
+.srow{display:grid;grid-template-columns:100px minmax(0,1fr) 80px 90px 60px 76px;column-gap:14px;align-items:center}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; display: flex; overflow: hidden; background: #F4F6F1;">
+<aside class="side">
+<a class="brand" href="Main.dc.html" aria-label="Madad home"><img src="/_blob/56e8f7627f7f63cc1e60778ebb3eda67" alt="Madad logo"><div><div class="wm">MADAD</div><div class="wms">Medical Logistics</div></div></a>
+<div class="ws">Workspace / Authority</div>
+<nav aria-label="Authority" style="display: flex; flex-direction: column; gap: 4px;">
+<a class="nav" href="AuthorityHome.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>Network Overview</a>
+<a class="nav on" href="Shortages.dc.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4"></path><path d="M12 17h.01"></path></svg>Shortages &amp; Procurement</a>
+<a class="nav" href="Redistribution.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg>Transfer Network</a>
+<a class="nav" href="Reports.dc.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>Reports</a>
+</nav>
+<div class="care"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9E8251" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg><div style="font-size: 17px; font-weight: 700; line-height: 1.3; color: #16362B;">Connected supplies.<br>Better care.</div><div class="small muted">All 1,091 hospital warehouses</div><div style="display: flex; gap: 14px; font-size: 12px; font-weight: 600; margin-top: 2px;"><a href="Main.dc.html">Switch workspace</a><a href="Model.dc.html">How it works</a></div></div>
+</aside>
+<main class="main">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+<div>
+<div class="crumb">Madad / Network intelligence</div>
+<h1 class="h1">Shortages &amp; Procurement</h1>
+<p class="sub">For each supply: how big the shortage is, how much transfers can fix, and what is left to buy.</p>
+</div>
+<div style="display: flex; gap: 10px; align-items: center;"><span class="portal">Authority Portal</span><span class="av" role="img" aria-label="Regulatory authority">RA</span></div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div style="display: flex; gap: 8px;" role="group" aria-label="Filter supplies">
+<sc-for list="{{ chips }}" as="c" hint-placeholder-count="4"><button class="{{ c.cls }}" aria-pressed="{{ c.on }}" onClick="{{ c.pick }}">{{ c.label }}</button></sc-for>
+</div>
+<span class="small muted">Stock months March–October 2023 · sorted by shortage size</span>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 16px; flex-grow: 1; min-height: 0;">
+<section class="card" aria-label="Supplies" style="display: flex; flex-direction: column; padding: 16px 20px;">
+<div class="srow" style="padding: 0 8px 10px; border-bottom: 1px solid #E3E7DF; font-size: 12px; font-weight: 600; color: #5F6F68;"><span>Supply</span><span>Covered by transfers</span><span style="text-align: right;">Shortage</span><span style="text-align: right;">Still short</span><span style="text-align: right;">Cover</span><span></span></div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="12">
+<div class="srow row" style="height: 36px; padding: 0 8px; border-radius: 8px; background: {{ r.bg }}; font-size: 14px;">
+<span style="font-weight: 600;">Product {{ r.p }}</span>
+<div style="height: 8px; border-radius: 4px; background: #EEF1EC; overflow: hidden;"><div style="height: 8px; border-radius: 4px; background: {{ r.color }}; width: {{ r.cov }}%;"></div></div>
+<span class="num" style="text-align: right;">{{ r.defS }}</span>
+<span class="num" style="text-align: right; color: {{ r.unmetColor }}; font-weight: 600;">{{ r.unmetS }}</span>
+<span class="num" style="text-align: right;">{{ r.cov }}%</span>
+<button class="btn btn-sm" style="height: 30px; justify-self: end;" onClick="{{ r.pick }}" aria-label="Details for Product {{ r.p }}">Details</button>
+</div>
+</sc-for>
+<div style="display: flex; gap: 18px; margin-top: auto; padding-top: 12px; font-size: 12px; color: #5F6F68;">
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #055444;"></span>90%+ fixed by transfers</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #9E8251;"></span>Partly</span>
+<span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #9B2F2A;"></span>Under 50% — buy</span>
+<span style="margin-left: auto;">Top 20 of 36 supplies by shortage</span>
+</div>
+</section>
+
+<aside class="card" aria-labelledby="dTitle" style="display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+<div><div class="eyebrow">Supply detail</div><h2 id="dTitle" style="font-size: 24px; font-weight: 700; margin: 6px 0 0;">Product {{ s.p }}</h2></div>
+<span class="{{ s.cls }}">{{ s.tag }}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px;">
+<div class="row" style="display: flex; justify-content: space-between; padding: 10px 0;"><span class="muted">Predicted shortage</span><span class="num" style="font-weight: 600;">{{ s.def }}</span></div>
+<div class="row" style="display: flex; justify-content: space-between; padding: 10px 0;"><span class="muted">Extra held in other hospitals</span><span class="num" style="font-weight: 600;">{{ s.sur }}</span></div>
+<div class="row" style="display: flex; justify-content: space-between; padding: 10px 0;"><span class="muted">Moved by suggested transfers</span><span class="num" style="font-weight: 600; color: #055444;">{{ s.moved }}</span></div>
+<div class="row" style="display: flex; justify-content: space-between; padding: 10px 0;"><span class="muted">Still short</span><span class="num" style="font-weight: 700; color: #8A2A25;">{{ s.unmet }}</span></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span class="muted">Covered by transfers</span><span class="num" style="font-weight: 700;">{{ s.cov }}%</span></div>
+<div style="height: 12px; border-radius: 6px; background: #EEF1EC; overflow: hidden;"><div style="height: 12px; border-radius: 6px; background: {{ s.color }}; width: {{ s.cov }}%;"></div></div>
+</div>
+<div style="padding: 12px 14px; border-radius: 12px; background: {{ s.recBg }}; color: {{ s.recFg }}; font-size: 14px; font-weight: 600; line-height: 1.45;">{{ s.rec }}</div>
+<div class="ai" style="padding: 14px 16px;">
+<span class="ai-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>What this means</span>
+<p style="font-size: 13.5px; line-height: 1.6; margin: 8px 0 0; color: #3E4F48;">{{ s.ai }}</p>
+</div>
+<div style="display: flex; gap: 8px; margin-top: auto;">
+<a class="btn btn-pri" href="Redistribution.dc.html" style="flex-grow: 1;">See its transfers</a>
+<a class="btn" href="Reports.dc.html" style="flex-grow: 1;">Add to brief</a>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: '50', filter: 'all' };
+  }
+  renderVals() {
+    const D = [
+      ['46', 1108722, 918465, 865701, 243021, 78.1], ['34', 611770, 5519803, 611770, 0, 100], ['50', 357902, 55527, 55527, 302375, 15.5],
+      ['38', 262828, 2576678, 262828, 0, 100], ['43', 212696, 11124260, 212696, 0, 100], ['44', 182494, 261215, 180774, 1720, 99.1],
+      ['39', 151553, 645423, 151553, 0, 100], ['42', 113953, 1115252, 113953, 0, 100], ['32', 104016, 152415, 99971, 4045, 96.1],
+      ['19', 54068, 61090, 42191, 11876, 78.0], ['23', 45800, 9970, 8630, 37170, 18.8], ['35', 32683, 172358, 32683, 0, 100],
+      ['52', 31775, 1130, 1130, 30644, 3.6], ['33', 19928, 83337, 19928, 0, 100], ['51', 17694, 204458, 17694, 0, 100],
+      ['17', 14810, 223350, 14810, 0, 100], ['1', 14352, 30722, 14017, 335, 97.7], ['24', 12042, 5296, 4931, 7110, 41.0],
+      ['15', 12039, 555, 555, 11484, 4.6], ['47', 10724, 20314, 7508, 3216, 70.0]
+    ];
+    const k = (n) => n >= 1e6 ? (Math.round(n / 1e4) / 100) + 'M' : n >= 1000 ? (Math.round(n / 100) / 10) + 'K' : String(n);
+    const st = this.state;
+    const all = D.map((d) => {
+      const cov = d[5];
+      const grp = cov < 50 ? 'buy' : cov < 90 ? 'part' : 'full';
+      return { p: d[0], def: d[1], sur: d[2], moved: d[3], unmet: d[4], cov: cov, grp: grp,
+        defS: k(d[1]), unmetS: d[4] ? k(d[4]) : '0', unmetColor: d[4] ? '#8A2A25' : '#5F6F68',
+        color: grp === 'full' ? '#055444' : grp === 'part' ? '#9E8251' : '#9B2F2A',
+        bg: d[0] === st.sel ? '#F1F6F2' : 'transparent', pick: () => this.setState({ sel: d[0] }) };
+    });
+    const rows = all.filter((r) => st.filter === 'all' || r.grp === st.filter);
+    const x = all.find((r) => r.p === st.sel) || all[0];
+    const plenty = x.sur > x.def;
+    let rec, ai, tag, cls, recBg, recFg;
+    if (x.grp === 'buy') {
+      tag = 'Needs buying'; cls = 'pill p-crit'; recBg = '#F7E4E1'; recFg = '#6E211D';
+      rec = 'Buy about ' + k(x.unmet) + ' units. Transfers cannot close this gap.';
+      ai = 'Hospitals with extra hold ' + k(x.sur) + ' units, but the shortage is ' + k(x.def) + '. Even if every spare unit moved, most of the gap would remain. This needs a purchase, not a transfer.';
+    } else if (x.grp === 'part') {
+      tag = 'Partly covered'; cls = 'pill p-risk'; recBg = '#F5ECDD'; recFg = '#5E4114';
+      rec = 'Approve transfers, then buy about ' + k(x.unmet) + ' units for the rest.';
+      ai = 'Transfers can move ' + k(x.moved) + ' units and cover ' + x.cov + '% of the shortage. ' + (plenty ? 'There is enough extra overall, but some of it is too far from where it is needed.' : 'The network does not hold enough extra to close the gap.');
+    } else {
+      tag = 'Fixed by transfers'; cls = 'pill p-ok'; recBg = '#E4EFE6'; recFg = '#184A33';
+      rec = 'No purchase needed. Monitor the suggested transfers.';
+      ai = 'Other hospitals hold ' + k(x.sur) + ' extra units against a shortage of ' + k(x.def) + '. Moving stock closes ' + x.cov + '% of the gap.';
+    }
+    return {
+      rows: rows,
+      chips: [['all', 'All'], ['buy', 'Needs buying'], ['part', 'Partly covered'], ['full', 'Fixed by transfers']].map((c) => ({ label: c[1], cls: st.filter === c[0] ? 'chip on' : 'chip', on: st.filter === c[0] ? 'true' : 'false', pick: () => this.setState({ filter: c[0] }) })),
+      s: { p: x.p, tag: tag, cls: cls, def: x.def.toLocaleString('en-US'), sur: x.sur.toLocaleString('en-US'), moved: x.moved.toLocaleString('en-US'), unmet: x.unmet.toLocaleString('en-US'), cov: x.cov, color: x.color, rec: rec, recBg: recBg, recFg: recFg, ai: ai }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Pharmacist photo search */
+
+#madad-interfaces .photo-search{margin:22px 0;padding:26px;border:1px solid var(--madad-border);border-radius:18px;background:var(--madad-window)}
+#madad-interfaces .photo-search h2{font-size:22px;margin:10px 0}
+#madad-interfaces .photo-search p{line-height:1.6;color:var(--madad-muted)}
+#madad-interfaces .photo-actions{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+#madad-interfaces .photo-actions button{min-height:44px}
+#madad-interfaces .photo-help{font-size:13px}
+#madad-interfaces #photo-status{padding:12px 16px;background:var(--madad-surface);border-radius:10px}
+#madad-interfaces #photo-status.is-error{color:#a13030}
+#madad-interfaces #photo-video,#madad-interfaces #photo-preview{display:block;width:100%;max-height:360px;object-fit:contain;border-radius:12px;background:#e9eee9}
+#madad-interfaces .photo-search [hidden]{display:none!important}
+@media(max-width:680px){#madad-interfaces .photo-search{padding:18px}#madad-interfaces .photo-actions button{flex:1 1 auto}}
+
+/* Camera and upload controls inside the medicine search field. */
+#madad-interfaces .madad-search-box{position:relative;min-width:0}
+#madad-interfaces #madad-medicine-search{padding-right:112px;min-height:54px;box-sizing:border-box;width:100%}
+#madad-interfaces .photo-inline-actions{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:flex;gap:4px;align-items:center}
+#madad-interfaces .photo-icon-button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:9px;background:transparent;color:var(--madad-primary,#0b5c4f);cursor:pointer}
+#madad-interfaces .photo-icon-button:hover{background:var(--madad-surface-strong,#eaf2ef)}
+#madad-interfaces .photo-icon-button:focus-visible{outline:2px solid var(--madad-primary,#0b5c4f);outline-offset:1px}
+#madad-interfaces .photo-icon-button svg{width:21px;height:21px;pointer-events:none}
+#madad-interfaces #photo-panel[hidden]{display:none!important}
+#madad-interfaces #photo-panel{padding:16px;margin:12px 0 22px}
+@media(max-width:680px){#madad-interfaces #madad-medicine-search{font-size:16px}}

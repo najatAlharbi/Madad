@@ -1,0 +1,25 @@
+facility_id,product_id,product_name,month,received,consumption,closing_balance
+620,38,"Albendazole 400mg, Tab",2023-11,300,120,1380
+620,32,"Ampicillin 500mg, Pdr for IM/IV, Inj, Vial",2023-11,50,48,2
+620,33,"Cannula, IV, 24G, Short, Sterile, Disposable, Pcs",2023-11,150,14,156
+620,15,"Ceftriaxone 250mg, Pdr for Inj",2023-11,0,10,0
+620,47,"Chlorhexidine Gluconate 7.1%, Gel",2023-11,60,14,90
+620,23,"Ciprofloxacin 500mg, Tab",2023-11,100,0,100
+620,24,"Erythromycin 125mg/5ml, Pdr for Susp, 100ml, Bot",2023-11,30,0,35
+620,19,"Ferrous Sulphate 200mg, Tab",2023-11,0,0,600
+620,34,"Folic Acid 5mg, Tab",2023-11,1000,34,10808
+620,44,"Glove, Exam, Latex, Medium, Nonsterile, Disposable, Pcs",2023-11,900,200,700
+620,29,"Glucose (Dextrose) Hypertonic 50%, IV Inj, 50ml, Bot",2023-11,20,0,20
+620,51,"IV Giving Set, Pcs",2023-11,50,15,715
+620,42,"Methyldopa 250mg, Tab",2023-11,100,40,2470
+620,17,"Metoclopramide HCl 10mg, Tab",2023-11,0,0,2005
+620,21,"Neomycin & Bacitracin 0.5% & 500IU/g, Ointment, 15g, Tube",2023-11,0,0,19
+620,39,"Oral Rehydration Salts (ORS), Sachet",2023-11,700,61,679
+620,35,"Oxytocin 10IU, Inj, Amp",2023-11,50,14,76
+620,46,"Paracetamol (Acetaminophen) 250mg, Dispersible, Tab",2023-11,2000,550,1450
+620,50,"Paracetamol (Acetaminophen) 500mg, Tab",2023-11,1000,580,420
+620,52,"Povidone Iodine 10%, Solution, Bot",2023-11,4,1,3
+620,18,"Prednisolone 5mg, Tab",2023-11,0,0,50
+620,22,"Salbutamol 100mcg/dose, Aerosol, Inhaler",2023-11,10,0,24
+620,20,"Water for Injection 10ml, Inj, Amp",2023-11,200,8,192
+620,43,"Zinc Sulphate 20mg, Dispersible, Tab",2023-11,500,30,6436

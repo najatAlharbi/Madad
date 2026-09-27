@@ -216,3 +216,23 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Madad backend data/model artifacts
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/*
+!models/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Zipped datasets
+*.zip
+
+# Frontend
+node_modules/
+frontend/dist/
+
+# UI verification screenshots
+frontend/verify-shots/

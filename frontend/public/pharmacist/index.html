@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Medicine name lookup and patient dispensing interface" name="description"/>
+<title>Hospital Pharmacist | Madad</title>
+<link href="base.css" rel="stylesheet"/>
+<link href="madad-logo.png" rel="icon"/><link href="image-search.css" rel="stylesheet"/>
+<link href="project-tokens.css" rel="stylesheet"/><link href="theme.css" rel="stylesheet"/><link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body class="">
+
+
+<div id="madad-interfaces">
+<div class="madad-product-window">
+<section class="madad-screen" id="madad-pharmacist">
+<aside aria-label="Hospital Pharmacist navigation" class="madad-sidebar" id="madad-navigation">
+<div class="madad-brand">
+<div class="madad-brand-mark">
+<img alt="Madad" class="madad-brand-logo" src="madad-logo.png"/>
+</div>
+<div><div class="madad-brand-name">MADAD</div><div class="madad-brand-sub">Medical Logistics</div></div>
+</div>
+<div class="madad-side-role">WORKSPACE / PHARMACIST</div>
+<nav class="madad-side-nav">
+<button class="madad-side-item is-active" data-pharmacist-view="search" type="button"><i aria-hidden="true" data-lucide="search"></i> Medicine Search</button>
+<button class="madad-side-item" data-pharmacist-view="dispensing" type="button"><i aria-hidden="true" data-lucide="clipboard-plus"></i> Dispensing Record</button>
+<button class="madad-side-item" data-pharmacist-view="history" type="button"><i aria-hidden="true" data-lucide="history"></i> Patient History</button>
+<button class="madad-side-item" data-pharmacist-view="catalog" type="button"><i aria-hidden="true" data-lucide="book-open"></i> Medicine Catalog</button>
+</nav>
+<div class="madad-side-foot"><p>Pharmacist workspace<br/>Records stay in this tab until it is closed or refreshed.</p><a class="switch-workspace" href="/">Switch workspace</a></div>
+</aside>
+<main class="madad-main">
+<header class="madad-topbar">
+<div class="madad-title"><div class="breadcrumb">MADAD <span>/</span> Pharmacy workspace</div><h1 id="madad-pharmacist-title">Medicine Search</h1><p id="madad-pharmacist-description">Search by name or compare a pill photo with the medicine catalog.</p></div>
+<div class="madad-top-actions"><span class="madad-demo-label" id="madad-pharmacist-data-badge">Pharmacist Portal</span><div aria-label="Pharmacist" class="madad-avatar">PH</div></div>
+</header>
+<div aria-live="polite" class="madad-action-feedback" id="madad-pharmacist-feedback">Enter a medicine name to begin.</div>
+<section class="madad-panel" data-pharmacist-panel="search">
+<div class="madad-search-row"><div class="search-heading"><span class="eyebrow">MEDICINE LOOKUP</span><h2>Find and verify a medicine</h2><p>Search by name, upload a photo, or use the camera.</p></div>
+<div class="madad-search-box"><span class="madad-search-icon"><i aria-hidden="true" data-lucide="search"></i></span><label class="madad-sr-only" for="madad-medicine-search">Search medicine by name</label><input class="madad-input" id="madad-medicine-search" placeholder="Enter medicine name"/><div class="photo-inline-actions"><button aria-label="Upload medicine photo" class="photo-icon-button" id="photo-upload" title="Upload photo" type="button"><i aria-hidden="true" data-lucide="image-plus"></i></button><button aria-label="Photograph medicine" class="photo-icon-button" id="photo-camera" title="Open camera" type="button"><i aria-hidden="true" data-lucide="camera"></i></button></div></div>
+<button class="madad-primary-button" id="madad-medicine-button" type="button">Search Medicine</button>
+</div>
+<section aria-label="Medicine photo preview" class="photo-search" hidden="" id="photo-panel">
+<input accept="image/jpeg,image/png,image/webp" hidden="" id="photo-file" type="file"/>
+<input accept="image/*" capture="environment" hidden="" id="photo-native" type="file"/>
+<p class="photo-help">JPG, PNG or WebP · Up to 10 MB. Images are sent to the local recognition server and are not saved.</p>
+<div hidden="" id="photo-live"><video aria-label="Camera preview" autoplay="" id="photo-video" muted="" playsinline=""></video><div class="photo-actions"><button class="madad-primary-button" id="photo-capture" type="button">Take photo</button><button class="madad-link-button" id="photo-close" type="button">Close camera</button></div></div>
+<div hidden="" id="photo-review"><img alt="Uploaded pill photograph" id="photo-preview"/><div class="photo-actions"><button class="madad-primary-button" id="photo-search" type="button">Search this image</button><button class="madad-link-button" id="photo-remove" type="button">Remove photo</button></div></div>
+<p aria-live="polite" id="photo-status" role="status">Upload a pill image or take a photo to get candidate matches.</p>
+<button class="madad-link-button" hidden="" id="photo-fallback" type="button">Use device camera / choose photo</button>
+</section>
+<div aria-live="polite" id="medicine-candidates"></div>
+<article aria-live="polite" class="madad-medicine-result">
+<div class="madad-medicine-visual">
+<img alt="" class="madad-medicine-image" hidden="" id="madad-medicine-image"/>
+<div class="madad-image-placeholder" id="madad-image-placeholder">
+<i aria-hidden="true" data-lucide="pill"></i>
+<strong>Reference photograph</strong>
+<span>Reference photo appears when available</span>
+</div>
+</div>
+<div class="madad-medicine-content">
+<div class="madad-medicine-title-row"><div><div class="madad-medicine-name" id="madad-medicine-name">No medicine selected</div><div class="madad-medicine-sub" id="madad-medicine-sub">Search by medicine name</div></div><span class="madad-status status-info" id="madad-catalog-status">Ready</span></div>
+<p class="madad-description" id="madad-medicine-description">Select a catalog record to review its identifying details.</p>
+<div class="madad-details-grid">
+<div class="madad-detail"><span>Category</span><strong id="madad-medicine-label">—</strong></div>
+<div class="madad-detail"><span>Strength</span><strong id="madad-medicine-strength">—</strong></div>
+<div class="madad-detail"><span>Dosage form</span><strong id="madad-medicine-form">—</strong></div>
+<div class="madad-detail"><span>NDC</span><strong id="madad-medicine-id">—</strong></div>
+</div>
+<button class="madad-primary-button madad-full-button" disabled="" id="madad-continue-dispensing" style="margin-top:14px" type="button">Continue to Dispensing</button>
+<div class="madad-notice">The pharmacist must verify the selected medicine and prescription before dispensing.</div>
+</div>
+</article>
+</section>
+<section class="madad-panel madad-form-box" data-pharmacist-panel="dispensing" hidden="">
+<div class="madad-section-head"><div><div class="madad-section-title">Patient dispensing details</div><div class="madad-section-caption" id="madad-selected-medicine-caption">Select a medicine first</div></div><i aria-hidden="true" data-lucide="clipboard-plus"></i></div>
+<form id="madad-dispensing-form">
+<div class="madad-fields">
+<div class="madad-field"><label for="madad-patient-name">Patient name</label><input class="madad-input" id="madad-patient-name" placeholder="Full name" required=""/></div>
+<div class="madad-field"><label for="madad-patient-id">Patient ID</label><input class="madad-input" id="madad-patient-id" placeholder="Medical record ID" required=""/></div>
+<div class="madad-field"><label for="madad-prescription">Prescription number</label><input class="madad-input" id="madad-prescription" placeholder="RX-000000" required=""/></div>
+<div class="madad-field"><label for="madad-dispense-quantity">Quantity</label><input class="madad-input" id="madad-dispense-quantity" min="1" placeholder="Enter quantity" required="" step="1" type="number"/></div>
+<div class="madad-field is-wide"><label for="madad-instructions">Dosage instructions</label><input class="madad-input" id="madad-instructions" placeholder="Enter prescription instructions" required=""/></div>
+<div class="madad-field is-wide"><label for="madad-notes">Pharmacist notes</label><textarea class="madad-textarea" id="madad-notes" placeholder="Optional notes"></textarea></div>
+</div>
+<button class="madad-primary-button madad-full-button" style="margin-top:13px" type="submit"><i aria-hidden="true" data-lucide="check"></i> Confirm Session Record</button>
+<div aria-live="polite" class="madad-feedback" id="madad-dispensing-feedback"></div>
+</form>
+</section>
+<section class="madad-panel madad-section" data-pharmacist-panel="history" hidden="">
+<div class="madad-section-head"><div><div class="madad-section-title">Patient dispensing history</div><div class="madad-section-caption">Records created in this browser session only</div></div></div>
+<div class="madad-table-wrap">
+<table class="madad-table">
+<thead><tr><th>Patient ID</th><th>Patient name</th><th>Medicine</th><th class="madad-number">Quantity</th><th>Prescription</th></tr></thead>
+<tbody id="madad-patient-history-body"></tbody>
+</table>
+</div>
+</section>
+<section class="madad-panel madad-section" data-pharmacist-panel="catalog" hidden="">
+<div class="madad-section-head"><div><div class="madad-section-title">Medicine catalog</div><div class="madad-section-caption">Medicine information available to the pharmacist</div></div></div>
+<div class="madad-metrics madad-metrics-compact">
+<div class="madad-metric"><div class="madad-metric-head"><span>Available medicines</span><i aria-hidden="true" data-lucide="pill"></i></div><div class="madad-metric-value" id="madad-catalog-count">0</div><div class="madad-metric-note">Searchable by medicine name</div></div>
+<div class="madad-metric"><div class="madad-metric-head"><span>Medicine details</span><i aria-hidden="true" data-lucide="list-checks"></i></div><div class="madad-metric-value">4</div><div class="madad-metric-note">Image, description, strength and dosage form</div></div>
+</div>
+<div class="madad-empty-state" id="madad-catalog-message"><strong>Medicine-name search</strong><span>Search by medicine name or NDC to review the catalog.</span></div>
+</section>
+</main>
+</section>
+</div>
+</div>
+<script src="icons.js"></script>
+
+
+
+<script src="bootstrap.js"></script></body>
+</html>
